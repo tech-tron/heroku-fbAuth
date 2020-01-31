@@ -1,0 +1,22 @@
+{
+  "name": "heroku-fbauth",
+  "version": "1.0.0",
+  "description": "test project hosted on heroku and uses graph api to log users in",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tech-tron/heroku-fbAuth.git"
+  },
+  "author": "Phillip",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tech-tron/heroku-fbAuth/issues"
+  },
+  "homepage": "https://github.com/tech-tron/heroku-fbAuth#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
