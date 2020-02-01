@@ -31,11 +31,22 @@ function statusChangeCallback(response){
 }
 
 function testAPI(){
-    FB.api('/me?fields=name,email', (response) => {
+    FB.api('/me?fields=name,email,birthday,location', (response) => {
         if(response && !response.error){
-            console.log(response);
+            //console.log(response);\
+            buildProfile(response);
         }
-    })
+    });
+}
+
+function buildProfile(user){
+    let profile = `
+        <h3>${user.name}</h3>
+            <ul class-"list-group">
+                <li class="list-group-item">User ID: ${}</li>
+                <li class="list-group-item">User ID: ${}</li>
+            </ul>
+    `
 }
 
 function checkLoginState() {
