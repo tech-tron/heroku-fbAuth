@@ -8,7 +8,8 @@
     <title>FB Auth</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
@@ -16,49 +17,55 @@
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Top navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+            <a class="navbar-brand" href="#">Garbissh</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
         </div>
-        
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="canvas.html">Game!!</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-        </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-            <fb:login-button 
-            id="fb-btn"
-            scope="public_profile,email" onlogin="checkLoginState();">
-            </fb:login-button>
-        </ul>
-          </ul>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="canvas.html">RunTrump</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Punch Granny</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a id="logout" href="#" onclick="logout()">logout</a>
+                </li>
+
+                <fb:login-button id="fb-btn" scope="public_profile,email" onlogin="checkLoginState();">
+                </fb:login-button>
+            </ul>
         </div>
     </nav>
-
-
-    <h1>Phillip is Awesome!</h1>
-    <p align="center">Join 
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-        </fb:login-button>
-         to agree!!
-    </p>
-
-    <br>
-
+    
     <div class="container">
-        <h3 id="heading">
-            Log in to view your profile
-        </h3>
+        <div id="heading">
+            <h1>Phillip is Awesome!</h1>
+            <p align="center">Join
+                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                </fb:login-button>
+                to agree!!
+            </p>
+
+            <br>
+
+            <h3>
+                Log in to view your profile
+            </h3>
+        </div>
         <div id="profile">
             <p>Lori ipsom</p>
         </div>
