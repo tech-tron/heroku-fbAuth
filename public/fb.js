@@ -1,15 +1,15 @@
 window.fbAsyncInit = function () {
     FB.init({
-        appId: '{your-app-id}',
-        cookie: true,
-        xfbml: true,
-        version: '{api-version}'
-    });
-    //check login status
-    FB.getLoginStatus(function (response) {
-        statusChangeCallback(response);
-    });
-};
+            appId: '2618486091717563',
+            cookie: true,
+            xfbml: true,
+            version: 'v5.0'
+        });
+        //check login status
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+    };
 
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
