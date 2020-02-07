@@ -8,7 +8,6 @@
     <title>Duck!!!</title>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -49,6 +48,9 @@
 const interval = 300;
 const standPx = 156;
 
+var finalX = 0;
+var initialX = 0;
+
 var currentFrame = 0;
 
 var cvs = document.getElementById("canvas");
@@ -61,10 +63,10 @@ var ctx = cvs.getContext("2d");
 var bgImg = new Image();
 // only works in root folder
 // bgImg.src = "../images/bg_ufc.jpg";
-bgImg.src = "bg_boxing.jpg";
+bgImg.src = "images/punch/bg_boxing.jpg";
 
 var oppImg = new Image();
-oppImg.src = "trump_rights.png";
+oppImg.src = "images/punch/trump_rights.png";
 
 var opp = {
     srcX: 0,
@@ -99,9 +101,9 @@ var opp = {
     maxDelay: 10  // max under of frames punch holds
 };
 var userImg = new Image();
-userImg.src = "boxing_gaurd.png";
+userImg.src = "images/punch/boxing_gaurd.png";
 
-var user = {
+var player = {
     srcX: 0,
     srcY: 0,
     col: 2,
@@ -110,23 +112,12 @@ var user = {
     desY: 0,
     desWidth: 0,
     desHeight: 0,
-    randPunchCount: 0,
-    punchDelay: 0,  // number of intervals punch holds
-    maxDelay: 10  // max under of frames punch holds
+    initX: 0
 };
 
 setRandomPunchCount();
 setScreen();
-function drawUser() {
-    ctx.drawImage(userImg,
-        //default full image
-        0, 0, standPx, standPx,
-        user.desX,
-        user.desY,
-        user.desWidth,
-        user.desHeight
-    );
-}
+
 function setScreen() {
     cvs.style.width = window.innerWidth + "px";
     cvs.style.height = window.innerHeight + "px";
@@ -144,8 +135,10 @@ function setScreen() {
     opp.desY = cvs.height * (1.5 / 4);
     opp.desHeight = cvs.height * (3 / 4);
     */
-    user.desWidth = cvs.height * (1 / 2);
-    user.desHeight = cvs.width;
+    player.desWidth = cvs.width * .5;
+    player.desX = cvs.width * .25;
+    player.desHeight = cvs.height * .5;
+    //player.desY = cvs.height - player.desHeight;
 }
 function updateFrame() {
     currentFrame++;
@@ -174,8 +167,28 @@ function drawBackground() {
 }
 
 
-var punchImg = new Image();
-punchImg.src = 'trumpPunch.png';
+function drawPlayer(){
+    if(initialX == 0){
+        // player hasnt pressed button down while opponent is punching
+        ctx.drawImage(userImg,
+            0, 0, standPx, standPx,  // default full image
+            player.desX,
+            player.desY,
+            player.desWidth,
+            player.desHeight
+        );
+    }else {
+        console.log("user should not have moved, this should not have been called!!");
+        console.log("this should not have been called!!");
+        ctx.drawImage(userImg,
+            0, 0, standPx, standPx,  // default full image
+            player.desX,
+            player.desY,
+            player.desWidth,
+            player.desHeight
+        );
+    }
+}
 function drawPunch() {
     // for right now i want punch to be a serperate sprite sheet
     ctx.drawImage(//punchImg,
@@ -194,7 +207,7 @@ function drawPunch() {
     );
 } 
 function playGrunt(){
-    
+    console.log("MAKE A GRNT SOUND!!");
 }
 function punch() {
     if (opp.currentFrame < opp.maxFrame) {
@@ -217,7 +230,7 @@ function punch() {
     } else {
         if (opp.punchDelay > 0) {
             //hold punch
-            console.log("pause for t-" + opp.punchDelay);
+            console.log("pause");
             opp.punchDelay--;
             // i want to add a slide to the outside function
             // so it increments the player position smoothly over for the pause
@@ -225,9 +238,12 @@ function punch() {
         } else {
             opp.srcY = 0;
             opp.isPunching = false;
+            initialX = 0;
+            player.desX = player.initX;
         }
-        drawPunch();
     }
+        drawPunch();
+        drawPlayer();
 }
 function updateOpp() {
     // should i put this check in main update
@@ -236,12 +252,12 @@ function updateOpp() {
         punch();
     }
     else if (currentFrame % opp.randPunchCount == 0) {
+        drawOpp();  // else there would be no frame drawn this frame
         opp.isPunching = true;
         opp.srcY = 1 * standPx;
         opp.punchDelay = 3;
         opp.currentFrame = 0;
         setRandomPunchCount();
-        drawOpp();  // else there would be no frame drawn this frame
     } 
     else {
         opp.srcY = ((currentFrame % 2)) * standPx;
@@ -296,10 +312,10 @@ function drawOpp(randX) {
     }
 }
 
-var finalX = 0;
-var initialX = 0;
 document.addEventListener('mousedown', e => {
-    initialX = e.clientX;
+    if(opp.isPunching == true){
+        initialX = e.clientX;
+    }
     console.log('mouse button down: ' + startX);
 });
 document.addEventListener('mouseup', e => {
