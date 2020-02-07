@@ -11,336 +11,351 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    </head>
+</head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Garbisssh</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">DuckTrump<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="trumpRun.html">RunTrump!</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/userlogin.html">Menu</a>
-                </li>
-            </ul>
-            </ul>
-        </div>
-    </nav>
-    
     <canvas id="canvas" width="300" height="300" style="border: 1px solid;"></canvas>
-    
-    
-<script>
-    $(document).ready(function () {
-
-const interval = 300;
-const standPx = 156;
-
-var finalX = 0;
-var initialX = 0;
-
-var currentFrame = 0;
-
-var cvs = document.getElementById("canvas");
-cvs.style.width = window.innerWidth + "px";
-cvs.style.height = window.innerHeight + "px";
 
 
-var ctx = cvs.getContext("2d");
+    <script>
+        $(document).ready(function () {
 
-var bgImg = new Image();
-// only works in root folder
-// bgImg.src = "../images/bg_ufc.jpg";
-bgImg.src = "images/punch/bg_boxing.jpg";
+            const interval = 450;
+            const standPx = 156;
 
-var oppImg = new Image();
-oppImg.src = "images/punch/trump_rights.png";
+            var finalX = 0;
+            var initialX = 0;
 
-var opp = {
-    srcX: 0,
-    srcY: 0,
-    col: 8,
-    row: 1,
-    desX: 0,
-    desY: 0,
-    desWidth: 0,
-    desHeight: 0,
-    isPunching: false, // decide if im putting this is the set interval or leaving it where its at
-    randPunchCount: 0,
-    currentFrame: 0,  // only on ONE SHOT ANIMATIONS
-    special: 1, // 2 at a zero index
-    //something is off, frame count is what im hitting at
-    // pauses on a blank frame, extended fram i would guess
-    // i kind of like the idea of him disappearing
+            var currentFrame = 0;
 
-    //on miss
-    // he just keeps going
-    // on hit you zoom out
-    // bam the wring is the same wring but now they are two charachters in the center of it no first person
-    // what
-    // peloski has a walker
-    // this whole whomp ass time you was using a walking
-    // bam
-    // she gets kicked through the air
-    // trump wins the day
-    // you loose
-    maxFrame: 8,
-    punchDelay: 0,  // number of intervals punch holds
-    maxDelay: 10  // max under of frames punch holds
-};
-var userImg = new Image();
-userImg.src = "images/punch/boxing_gaurd.png";
-
-var player = {
-    srcX: 0,
-    srcY: 0,
-    col: 2,
-    row: 1,
-    desX: 0,
-    desY: 0,
-    desWidth: 0,
-    desHeight: 0,
-    initX: 0
-};
-
-setRandomPunchCount();
-setScreen();
-
-function setScreen() {
-    cvs.style.width = window.innerWidth + "px";
-    cvs.style.height = window.innerHeight + "px";
-
-    opp.desWidth = cvs.width;
-
-    // i really like this height
-    // right below the light bar of boxing ring back ground
-    opp.desHeight = cvs.height * .85;
-    opp.desY = cvs.height * .15;
-    /*
-    opp.desX = cvs.width * (1 / 4); // half the des width
-    opp.desWidth = cvs.width * (2 / 4);
-
-    opp.desY = cvs.height * (1.5 / 4);
-    opp.desHeight = cvs.height * (3 / 4);
-    */
-    player.desWidth = cvs.width * .5;
-    player.desX = cvs.width * .25;
-    player.desHeight = cvs.height * .5;
-    //player.desY = cvs.height - player.desHeight;
-}
-function updateFrame() {
-    currentFrame++;
-
-}
-function setRandomPunchCount() {
-    opp.randPunchCount =
-        Math.floor(Math.random() * 2) + opp.maxDelay;
-
-    //opp.randPunchCount = 10;
-    console.log("randomPunch: " + opp.randPunchCount);
-
-}
-function drawBackground() {
-    ctx.drawImage(bgImg,
-        0,
-        0,
-        standPx,
-        standPx,
-        0,
-        0,
-        cvs.width,
-        cvs.height
-    );
-    // i want a function to draw the flashes from the cameras in the audience
-}
+            var cvs = document.getElementById("canvas");
+            cvs.style.width = window.innerWidth + "px";
+            cvs.style.height = window.innerHeight + "px";
 
 
-function drawPlayer(){
-    if(initialX == 0){
-        // player hasnt pressed button down while opponent is punching
-        ctx.drawImage(userImg,
-            0, 0, standPx, standPx,  // default full image
-            player.desX,
-            player.desY,
-            player.desWidth,
-            player.desHeight
-        );
-    }else {
-        console.log("user should not have moved, this should not have been called!!");
-        console.log("this should not have been called!!");
-        ctx.drawImage(userImg,
-            0, 0, standPx, standPx,  // default full image
-            player.desX,
-            player.desY,
-            player.desWidth,
-            player.desHeight
-        );
-    }
-}
-function drawPunch() {
-    // for right now i want punch to be a serperate sprite sheet
-    ctx.drawImage(//punchImg,
-        oppImg,
-        //hahaha literally just wrote this same line when i was finishing editing the sprite shee
-        //youll see lol
-        //love the bloody knucks
-        opp.srcX,
-        opp.srcY,
-        standPx,
-        standPx,
-        opp.desX,
-        opp.desY,
-        opp.desWidth,
-        opp.desHeight
-    );
-} 
-function playGrunt(){
-    console.log("MAKE A GRNT SOUND!!");
-}
-function punch() {
-    if (opp.currentFrame < opp.maxFrame) {
-        //if still punching
-        //if i wanted to make this one source i could just add two for the first two rows of punching
-        //opp.srcX = (opp.currentFrame % opp.col + 2)  * standPx;
-        //its on a four col
-        //opp.srcX = (opp.currentFrame % opp.col)  * standPx;
-        //opp.srcY = Math.floor(opp.currentFrame / opp.col) * standPx;
-        opp.srcX = (opp.currentFrame % opp.col)  * standPx;
-        // comment out this, it should be set before hand
-        opp.srcY = (Math.floor(opp.currentFrame / opp.col) + 2) * standPx;
-        drawPunch();
-        if(currentFrame == opp.grunt){
-            playGrunt();
-        }
-        opp.currentFrame++;
+            var ctx = cvs.getContext("2d");
+
+            var bgImg = new Image();
+            // only works in root folder
+            // bgImg.src = "../images/bg_ufc.jpg";
+            bgImg.src = "images/punch/bg_boxing.jpg";
+
+            var oppImg = new Image();
+            oppImg.src = "images/punch/trump_punch.png";
+
+            var opp = {
+                srcX: 0,
+                srcY: 0,
+                col: 8,
+                row: 2,
+                desX: 0,
+                desY: 0,
+                desWidth: 0,
+                desHeight: 0,
+                isPunching: false, // decide if im putting this is the set interval or leaving it where its at
+                randPunchCount: 0,
+                currentFrame: 0,  // only on ONE SHOT ANIMATIONS
+                special: 1, // 2 at a zero index
+                //something is off, frame count is what im hitting at
+                // pauses on a blank frame, extended fram i would guess
+                // i kind of like the idea of him disappearing
+
+                //on miss
+                // he just keeps going
+                // on hit you zoom out
+                // bam the wring is the same wring but now they are two charachters in the center of it no first person
+                // what
+                // peloski has a walker
+                // this whole whomp ass time you was using a walking
+                // bam
+                // she gets kicked through the air
+                // trump wins the day
+                // you loose
+                maxFrame: 8,
+                punchDelay: 2,  // number of intervals punch holds
+                maxDelay: 5  // max under of frames punch holds
+            };
+            var userImg = new Image();
+            userImg.src = "images/punch/boxing_gaurd.png";
+
+            var player = {
+                srcX: 0,
+                srcY: 0,
+                col: 2,
+                row: 1,
+                desY: 0,
+                desWidth: 0,
+                desHeight: 0,
+                initY: 0,
+                initX: 0
+            };
+
+            setRandomPunchCount();
+            resetIdle();
+            setScreen();
+
+            function setScreen() {
+                cvs.style.width = window.innerWidth + "px";
+                cvs.style.height = window.innerHeight + "px";
 
 
-    } else {
-        if (opp.punchDelay > 0) {
-            //hold punch
-            console.log("pause");
-            opp.punchDelay--;
-            // i want to add a slide to the outside function
-            // so it increments the player position smoothly over for the pause
-            // like a kung fu power punch landing 
-        } else {
-            opp.srcY = 0;
-            opp.isPunching = false;
-            initialX = 0;
-            player.desX = player.initX;
-        }
-    }
-        drawPunch();
-        drawPlayer();
-}
-function updateOpp() {
-    // should i put this check in main update
-    // or leave it here
-    if (opp.isPunching == true) {
-        punch();
-    }
-    else if (currentFrame % opp.randPunchCount == 0) {
-        drawOpp();  // else there would be no frame drawn this frame
-        opp.isPunching = true;
-        opp.srcY = 1 * standPx;
-        opp.punchDelay = 3;
-        opp.currentFrame = 0;
-        setRandomPunchCount();
-    } 
-    else {
-        opp.srcY = ((currentFrame % 2)) * standPx;
-        opp.srcX = (currentFrame % opp.col) * standPx;
-        // Test: random float position
-        var randX = Math.random() * (.25 * cvs.width);
-        // might add this to the  des x and
-        // make him move random x increments across the screen
-        // and bounce him back and forth when he goes off screen
-        // THIS IS COOL
-        // may move rand x to be set every few frames when it checks to see
-        // if the screen width needs updated
-        drawOpp(randX);
-    }
-}
-function drawOpp(randX) {
-    if(opp.isPunching == false){
-        //bounce side to side
-        if(currentFrame % 2 == 0){
-            //if even, or every other frame
-            randX *= -1;
-            // he should bounce right to left alternating each frame
-        }
-        ctx.drawImage(oppImg,
-            //0,
-            opp.srcX,
-            //0,
-            opp.srcY,
-            //156,
-            standPx,
-            standPx,
-            opp.desX + randX,
-            opp.desY,
-            opp.desWidth,
-            opp.desHeight
-        );   
-    } else {
-        console.log('shouldnt be here if is punching is true');
-        ctx.drawImage(oppImg,
-            //0,
-            opp.srcX,
-            //0,
-            opp.srcY,
-            //156,
-            standPx,
-            standPx,
-            opp.desX,
-            opp.desY,
-            opp.desWidth,
-            opp.desHeight
-        );
-    }
-}
+                player.desWidth = cvs.width * .8;
+                player.initX = cvs.width * .1;
+                player.desHeight = cvs.height;
+                player.initY = cvs.height / 2;
+            }
+            function resetIdle() {
+                //reset idle
+                opp.srcY = 0;
+                opp.isPunching = false;
+                initialX = 0;
+                player.desX = player.initX;
+                currentFrame = 0;
 
-document.addEventListener('mousedown', e => {
-    if(opp.isPunching == true){
-        initialX = e.clientX;
-    }
-    console.log('mouse button down: ' + startX);
-});
-document.addEventListener('mouseup', e => {
-    finalX = e.clientX;
-    if(finalX - initialX > 0){
-        //positive slop
-        console.log('Right Swipe!!');
-    }
-    else{
-        console.log('leftSwipe');
-    }
-});
+                opp.desHeight = cvs.height;
+                opp.initY = cvs.height / 2;
+                opp.desY = 0;
+                opp.desWidth = cvs.width;
+                opp.desX = 0;
+            }
+            function setRandomPunchCount() {
+                opp.randPunchCount =
+                    Math.floor(Math.random() * (opp.maxDelay * 3)); //+ opp.maxDelay;
+
+                //opp.randPunchCount = 10;
+                console.log("randomPunch: " + opp.randPunchCount);
+
+            }
+            function setPunch(){
+                drawOpp();  // else there would be no frame drawn this frame
+                opp.desHeight = 
+                opp.isPunching = true;
+                opp.currentFrame = 0;
+                setRandomPunchCount();
+                if (currentFrame % 2 == 0) {
+                    opp.isRight = true;
+                    console.log("is right!");
+                } else {
+                    opp.isRight = false;
+                    console.log("punch left grandma!");
+                }
+                // i really like this height
+                // right below the light bar of boxing ring back ground
+                opp.desHeight = cvs.height * .85;
+                opp.desY = cvs.height * .15;
+            }
+            function updateFrame() {
+                currentFrame++;
+
+            }
+            function drawBackground() {
+                ctx.drawImage(bgImg,
+                    0,
+                    0,
+                    standPx,
+                    standPx,
+                    0,
+                    0,
+                    cvs.width,
+                    cvs.height
+                );
+                // i want a function to draw the flashes from the cameras in the audience
+            }
+
+            function drawGaurd() {
+                if (initialX == 0) {
+                    console.log("Player has not moved!!");
+                    // player hasnt pressed button down while opponent is punching
+                    //player.desY += cvs.height * .1;
+                    ctx.drawImage(userImg,
+                        0, 0, standPx, standPx,  // default full image,
+                        player.initX,
+                        player.initY + (currentFrame * (cvs.height * .02)),
+                        player.desWidth,
+                        player.desHeight
+                    );
+                } else {
+                    if (player.isRight) {
+                        //drawRight
+                        ctx.drawImage(userImg,
+                        0, 0, standPx, standPx,  // default full image
+                        player.desX,
+                        player.desY,
+                        player.desWidth,
+                        player.desHeight
+                    );
+                    } else {
+                        //drawLeft
+                        ctx.drawImage(userImg,
+                        0, 0, standPx, standPx,  // default full image
+                        -((cvs.width - player.desX ) / 2),
+                        player.desY,
+                        player.desWidth,
+                        player.desHeight
+                    );
+                    }
+                    console.log("user should not have moved, this should not have been called!!");
+                    console.log("this should not have been called!!");
+                }
+            }
+            function drawPunch() {
+                // for right now i want punch to be a serperate sprite sheet
+                ctx.drawImage(//punchImg,
+                    oppImg,
+                    //hahaha literally just wrote this same line when i was finishing editing the sprite shee
+                    //youll see lol
+                    //love the bloody knucks
+                    opp.srcX,
+                    opp.srcY,
+                    standPx,
+                    standPx,
+                    opp.desX,
+                    opp.desY,
+                    opp.desWidth,
+                    opp.desHeight
+                );
+            }
+            function playGrunt() {
+                console.log("MAKE A GRNT SOUND!!");
+            }
+            function punch() {
+                opp.currentFrame++;
+                //should change to isPunching(){} lol
+                // first check to see if user blocked
+                // if user isright = opp isright
+                // then reset the values
+                // else
+                // finsish punch
+                if (opp.currentFrame < opp.maxFrame - 3) {
+                    //if still punching
+                    opp.srcX = (opp.currentFrame % opp.col) * standPx;
+                    drawPunch();
+                    if (currentFrame == opp.grunt) {
+                        playGrunt();
+                    }
+                    drawPunch();
+                    drawGaurd();
+                } else {
+                    if (opp.isRight == player.isRight &&
+                        initialX != 0) {
+                        resetIdle();
+
+                        console.log('Player should recieve points!!');
+
+                    } else {
+                        console.log('Player should LOSS LIFE');
+                        if (opp.currentFrame < opp.maxFrame) {
+                            //if still punching
+                            opp.srcX = (opp.currentFrame % opp.col) * standPx;
+                            if (currentFrame == opp.grunt) {
+                                playGrunt();
+                            }
+                        }
+                        else if (opp.currentFrame < opp.maxFrame + opp.punchDelay) {
+                            //console.log("pause");
+                        }
+                        else {
+                            drawPunch();
+                            resetIdle();
+                        }
+                        drawPunch();
+                    }
+                }
+            }
+            function updateOpp() {
+                // should i put this check in main update
+                // or leave it here
+                if (opp.isPunching == true) {
+                    punch();
+                }
+                else if (currentFrame > opp.randPunchCount) {
+                    setPunch();
+                }
+                else {
+                    opp.srcY = ((currentFrame % 2)) * standPx;
+                    opp.srcX = 0;
+                    // Test: random float position
+                    var randX = Math.random() * (.25 * cvs.width);
+                    // might add this to the  des x and
+                    // make him move random x increments across the screen
+                    // and bounce him back and forth when he goes off screen
+                    // THIS IS COOL
+                    // may move rand x to be set every few frames when it checks to see
+                    // if the screen width needs updated
+                    drawOpp(randX);
+                }
+            }
+            function drawOpp(randX) {
+                if (opp.isPunching == false) {
+                    //bounce side to side
+                    if (currentFrame % 2 == 0) {
+                        //if even, or every other frame
+                        randX *= -1;
+                        // he should bounce right to left alternating each frame
+                    }
+                    ctx.drawImage(oppImg,
+                        //0,
+                        opp.srcX,
+                        //0,
+                        opp.srcY,
+                        //156,
+                        standPx,
+                        standPx,
+                        opp.desX + randX,
+                        opp.desY,
+                        opp.desWidth,
+                        opp.desHeight
+                    );
+                } else {
+                    console.log('shouldnt be here if is punching is true');
+                    ctx.drawImage(oppImg,
+                        //0,
+                        opp.srcX,
+                        //0,
+                        opp.srcY,
+                        //156,
+                        standPx,
+                        standPx,
+                        opp.desX,
+                        opp.desY,
+                        opp.desWidth,
+                        opp.desHeight
+                    );
+                }
+            }
+
+            document.addEventListener('mousedown', e => {
+                if (opp.isPunching == true) {
+                    initialX = e.clientX;
+                }
+                console.log('mouse button down: ' + initialX);
+            });
+            document.addEventListener('mouseup', e => {
+                finalX = e.clientX;
+                if (finalX - initialX > 0) {
+                    //positive slop
+                    player.desX = cvs.width * .7
+                    console.log('Right Swipe!!');
+                }
+                else {
+                    console.log('leftSwipe');
+                    player.desX = cvs.width * -.3;
+                }
+            });
 
 
 
-setInterval(function () {
-    updateFrame();
-    drawBackground();
-    updateOpp();  // => drawOpp();
-    // you need boxing gloves that will arise when he is punching and disapear else wise
-    // you need two black eye squint overlays
-    // swelling one eye randomly shut near death 
-}, interval);
-});
-</script>
+            setInterval(function () {
+                updateFrame();
+                drawBackground();
+                updateOpp();  // => drawOpp();
+                // you need boxing gloves that will arise when he is punching and disapear else wise
+                // you need two black eye squint overlays
+                // swelling one eye randomly shut near death 
+            }, interval);
+        });
+    </script>
 
 </body>
+
 </html>
