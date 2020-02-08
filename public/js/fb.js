@@ -43,8 +43,8 @@ function buildProfile(user){
     let profile = `
         <h3>${user.name}</h3>
             <ul class-"list-group">
-                <li class="list-group-item">User ID: ${}</li>
-                <li class="list-group-item">User ID: ${}</li>
+                <li class="list-group-item">User ID: ${user.name}</li>
+                <li class="list-group-item">User ID: ${user.name}</li>
             </ul>
     `
 }

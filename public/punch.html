@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Duck!!!</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menumodal.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -19,6 +20,34 @@
 
     <script>
         $(document).ready(function () {
+            // modal
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal 
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+
 
             const interval = 450;
             const standPx = 156;
@@ -126,18 +155,18 @@
                 console.log("randomPunch: " + opp.randPunchCount);
 
             }
-            function setPunch(){
+            function setPunch() {
                 drawOpp();  // else there would be no frame drawn this frame
-                opp.desHeight = 
-                opp.isPunching = true;
+                opp.desHeight =
+                    opp.isPunching = true;
                 opp.currentFrame = 0;
                 setRandomPunchCount();
                 if (currentFrame % 2 == 0) {
-                    opp.isRight = true;
-                    console.log("is right!");
-                } else {
                     opp.isRight = false;
-                    console.log("punch left grandma!");
+                    //console.log("is right!");
+                } else {
+                    opp.isRight = true;  // stage right = false
+                    //console.log("punch left grandma!");
                 }
                 // i really like this height
                 // right below the light bar of boxing ring back ground
@@ -178,21 +207,22 @@
                     if (player.isRight) {
                         //drawRight
                         ctx.drawImage(userImg,
-                        0, 0, standPx, standPx,  // default full image
-                        player.desX,
-                        player.desY,
-                        player.desWidth,
-                        player.desHeight
-                    );
+                            0, 0, standPx, standPx,  // default full image
+                            player.desX,
+                            player.desY,
+                            player.desWidth,
+                            player.desHeight
+                        );
                     } else {
                         //drawLeft
                         ctx.drawImage(userImg,
-                        0, 0, standPx, standPx,  // default full image
-                        -((cvs.width - player.desX ) / 2),
-                        player.desY,
-                        player.desWidth,
-                        player.desHeight
-                    );
+                            0, 0, standPx, standPx,  // default full image
+                            //-((cvs.width - player.desX ) / 2),
+                            player.desX,  // this should be set like we need it in the event listener mouseup
+                            player.desY,
+                            player.desWidth,
+                            player.desHeight
+                        );
                     }
                     console.log("user should not have moved, this should not have been called!!");
                     console.log("this should not have been called!!");
@@ -226,7 +256,7 @@
                 // then reset the values
                 // else
                 // finsish punch
-                if (opp.currentFrame < opp.maxFrame - 3) {
+                if (currentFrame < opp.maxFrame - 3) {
                     //if still punching
                     opp.srcX = (opp.currentFrame % opp.col) * standPx;
                     drawPunch();
@@ -267,9 +297,9 @@
                 // or leave it here
                 if (opp.isPunching == true) {
                     punch();
-                }
-                else if (currentFrame > opp.randPunchCount) {
-                    setPunch();
+                    //}
+                    //else if (currentFrame > opp.randPunchCount) {
+                    //setPunch();
                 }
                 else {
                     opp.srcY = ((currentFrame % 2)) * standPx;
@@ -325,9 +355,9 @@
             }
 
             document.addEventListener('mousedown', e => {
-                if (opp.isPunching == true) {
-                    initialX = e.clientX;
-                }
+                setPunch();
+                //if (opp.isPunching == true) {}
+                initialX = e.clientX;
                 console.log('mouse button down: ' + initialX);
             });
             document.addEventListener('mouseup', e => {
@@ -335,23 +365,28 @@
                 if (finalX - initialX > 0) {
                     //positive slop
                     player.desX = cvs.width * .7
-                    console.log('Right Swipe!!');
+                    //console.log('Right Swipe!!');
                 }
                 else {
-                    console.log('leftSwipe');
+                    //console.log('leftSwipe');
                     player.desX = cvs.width * -.3;
                 }
+                //onswipe call 
+                setPunch();
             });
 
 
 
             setInterval(function () {
-                updateFrame();
-                drawBackground();
-                updateOpp();  // => drawOpp();
-                // you need boxing gloves that will arise when he is punching and disapear else wise
-                // you need two black eye squint overlays
-                // swelling one eye randomly shut near death 
+                if (isPlaying = true) {
+                    updateFrame();
+                    drawBackground();
+                    updateOpp();  // => drawOpp();
+                    // you need boxing gloves that will arise when he is punching and disapear else wise
+                    // you need two black eye squint overlays
+                    // swelling one eye randomly shut near death 
+                }
+
             }, interval);
         });
     </script>
