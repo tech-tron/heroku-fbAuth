@@ -16,4 +16,12 @@
     font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
-    }
+}
+footer{
+    height: 100vh;
+    padding: 20vh 20vw;
+}
+#testImg img{
+    width: 50vw;
+    margin: 0 25vw;
+}

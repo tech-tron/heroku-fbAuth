@@ -16,13 +16,37 @@
 </head>
 
 <body>
+    <div id="topBanner" class="fixed-top">
+        <div id ="patreonBanner">
+                <img src="images/icons/patreon.png" alt="patreon banner image">
+        </div>
+        <div id="menuBtn">
+            <!-- <span class="glyphicon glyphicon-menu-hamburger"></span> -->
+            <img src="images/icons/blueMenuIcon.png" alt="menu icon">
+            <!-- <img src="images/icons/blueMenuAlt.png" alt="menu icon"> -->
+        </div>
+    </div>
+    <!-- The Modal -->
+    <div id="menuModal" class="cover">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close glyphicon glyphicon-remove"></span>
+
+            <button id="resumeBtn" type="button" class="btn btn-info">
+                Resume <span class="glyphicon glyphicon-thumbs-up"></span>
+            </button>
+            <button id="quitBtn" type="button" class="btn btn-danger">
+                Forfiet <span class="glyphicon glyphicon-thumbs-down"></span>
+            </button>
+        </div>
+    </div>
+    <script src="js/menuModal.js"></script>
+
     <canvas id="canvas" width="300" height="300" style="border: 1px solid;"></canvas>
-
-
-    <script>
-
-
-
+    
+        <script>
+$(document).ready(function () {
             const interval = 450;
             const standPx = 156;
 
