@@ -15,44 +15,54 @@
 
 <body>
     <script src="js/fb.js"></script>
+    <img id="bannerLogo" src="images/logo/logo_00.jpg" />
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Garbissh</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="canvas.html">RunTrump</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="punch.html">Punch Granny</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a id="logout" href="#" onclick="logout()">logout</a>
-                </li>
-
-                <fb:login-button id="fb-btn" 
-                    scope="public_profile,email,user_birthday,user_location" onlogin="checkLoginState();">
-                </fb:login-button>
-            </ul>
-        </div>
-    </nav>
+    <div class="sticky-top">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Garbissh</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
     
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="canvas.html">RunTrump</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="punch.html">Punch Granny</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+    
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a id="logout" href="#" onclick="logout()">logout</a>
+                    </li>
+    
+                    <fb:login-button id="fb-btn" scope="public_profile,email,user_birthday,user_location"
+                        onlogin="checkLoginState();">
+                    </fb:login-button>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+
+
+
+    <img id="bannerLogo" src="images/logo/logo_03.jpg" />
+
+
     <div class="container">
         <div id="heading">
             <h1>Phillip is Awesome!</h1>
@@ -73,22 +83,30 @@
         </div>
     </div>
 
-    <footer class="btn-group btn-group-lg btn-group-vertical">
-            <button type="button" class="btn btn-danger">
-                <a href="canvas.html">Run Trump</a>
-            </button>
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    <img id="bannerLogo" src="images/logo/logo_02.jpg" />
+    <img id="bannerLogo" src="images/logo/logo_01.jpg" />
+    <img id="bannerLogo" src="images/logo/logo_00.jpg" />
+
+
+
+    <footer class="btn-group btn-group-sm btn-group-vertical d-flex flex-column">
+        <button type=" button" class="btn">
+        <a type="button" class="btn btn-danger" href="canvas.html">
+            Run Trump</a>
+        </button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                 Trump Punch</button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="punch.html">Ver 01</a></li>
-                    <li><a href="orgPunch.html">Ver 00</a></li>
-                </ul>
-            </div>
-            <button type="button" class="btn btn-danger">
-                <a href="smackQueen.html">Smack Da Queen</a>
-            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="punch.html">Ver 01</a></li>
+                <li><a href="orgPunch.html">Ver 00</a></li>
+            </ul>
+        </div>
+        <button type="button" class="btn btn-danger">
+            <a href="smackQueen.html">Smack Da Queen</a>
+        </button>
     </footer>
+
 </body>
 
 </html>
