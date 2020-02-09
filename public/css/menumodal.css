@@ -1,5 +1,5 @@
 /* The Modal (background) */
-.modal {
+.cover {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -10,23 +10,30 @@
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
   }
   
   /* Modal Content */
   .modal-content {
-    background-color: #fefefe;
     margin: auto;
-    padding: 20px;
+    padding: 0;
     border: 1px solid #888;
-    width: 80%;
+    width: 40%;
+    height: 60%;
+    background-color: rgba(0,0,0,0);
+  }  
+  #menuModal button {
+    height:50%;
+    width: 100%;
+    margin-left: 2%;
+    font-size: 5vh;
   }
-  
   /* The Close Button */
   .close {
+    position: absolute;
     color: #aaaaaa;
     float: right;
-    font-size: 28px;
+    font-size: 2vh;
     font-weight: bold;
   }
   
@@ -35,4 +42,40 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  #topBanner {
+    width: 100vw;
+    height: 10vh;
+    background-color: burlywood;
+  }
+  #patreonBanner{
+    width: 90%;
+    height: 100%;
+    float: left;
+  }
+  #patreonBanner img{
+    width: 100%;
+    height: 100%;
+  }
+  #menuBtn{
+    margin-top: 2%;
+    width:10%;
+    height: 100%;
+    float: right;
+    /* background-color: aqua; */
+  }
+  #menuBtn img{
+    float: center;
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+  }
+  .circle {
+    background: #456BD9;
+    border-radius: 50%;
+    color: #fff;
+    height: 5em;
+    position: relative;
+    width: 5em;
   }
