@@ -13,10 +13,10 @@ $(document).ready(function () {
     var ctx = cvs.getContext("2d");
 
     var leg0 = "images/legs/fastWalk_100_312.png";
-    var leg1 = "../images/legs/heels_shortSpring_100_312.png";
-    var leg2 = "../images/legs/heels_sprint_156_312.png";
-    var leg3 = "../images/legs/justCurious_100_312.png";
-    var leg4 = "../images/legs/leg_sprinter_135_100.png";
+    var leg1 = "images/legs/heels_shortSpring_100_312.png";
+    var leg2 = "images/legs/heels_sprint_156_312.png";
+    var leg3 = "images/legs/justCurious_100_312.png";
+    var leg4 = "images/legs/leg_sprinter_135_100.png";
 
     var legsImg = new Image();
     legsImg.src = leg0;
@@ -44,7 +44,7 @@ $(document).ready(function () {
 
     var bgImg = new Image();
     bgImg.src = "images/legs/endlessForrest_500_281.jpg";
-    bgImg.src = "images/legs/guys-staring.jpg";
+    //bgImg.src = "images/legs/guys-staring.jpg";
     var bg = {
         srcWidth: 500,
         srcHeight: 281,
@@ -54,15 +54,16 @@ $(document).ready(function () {
         xtrail: cvs.width,
         speed: moveSpeed
     }
+    bg.xtrail += bg.speed;
     function drawBackground(){
-        if(bg.xlead < -cvs.width){
-            bg.xlead = cvs.width;
+        if(bg.xlead < -cvs.width - bg.speed){
+            bg.xlead = cvs.width + bg.speed;
         } else {
             bg.xlead += bg.speed;
         }
 
         if(bg.xtrail < -cvs.width){
-            bg.xtrail = cvs.width;
+            bg.xtrail = cvs.width + bg.speed;
         } else {
             bg.xtrail += bg.speed
         }
@@ -82,5 +83,41 @@ $(document).ready(function () {
     }, interval);
 
 
-    var btn0 = document.get
+    var btn1 = document.getElementById("btn0");
+    var btn1 = document.getElementById("btn1");
+    var btn2 = document.getElementById("btn2");
+    var btn3 = document.getElementById("btn3");
+    var btn4 = document.getElementById("btn4");
+
+    var leg0 = "images/legs/fastWalk_100_312.png";
+    var leg1 = "images/legs/heels_shortSpring_100_312.png";
+    var leg2 = "images/legs/heels_sprint_156_312.png";
+    var leg3 = "images/legs/justCurious_100_312.png";
+    var leg4 = "images/legs/leg_sprinter_135_100.png";
+
+    btn0.onclick = function(e) {
+        legsImg.src = leg0;
+        legs.srcWidth = 100;
+        legs.srcheight = 312;
+    }
+    btn1.onclick = function(e) {
+        legsImg.src = leg1;
+        legs.srcWidth = 100;
+        legs.srcHeight = 312;
+    }
+    btn2.onclick = function(e) {
+        legsImg.src = leg2;
+        legs.srcWidth = 156;
+        legs.srcHeight = 312;
+    }
+    btn3.onclick = function(e) {
+        legsImg.src = leg3;
+        legs.srcWidth = 100;
+        legs.srcheight=  312;
+    }
+    btn4.onclick = function(e) {
+        legsImg.src = leg4;
+        legs.srcWidth = 135;
+        legs.srcHeight = 100;
+    }
 });
