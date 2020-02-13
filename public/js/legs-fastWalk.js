@@ -32,11 +32,11 @@ $(document).ready(function () {
 
 
     var leg = [
-            "images/legs/fastWalk_100_312.png", // checks out
-            "images/legs/heels_shortSpring_156_312.png",  // changed from 100 to correct 156
-            "images/legs/heels_sprint_156_312.png",  // checks out col 3
-            "images/legs/justCurious_100_312.png",
-            "images/legs/leg_sprinter_156_100.png"  // flipped and fixed width title
+        "images/legs/fastWalk_100_312.png",
+        "images/legs/fastWalk_130_312_twist_handSwing.png",
+        "images/legs/fastWalk_130_312_twist_headTurn.png",
+        "images/legs/fastWalk_130_312_twist_wierdBackwardHead.png",
+        "images/legs/fastWalk_130_312_twist.png"
     ];
 
     var legsImg = new Image();
@@ -65,8 +65,9 @@ $(document).ready(function () {
     }
 
     var bgImg = new Image();
-    bgImg.src = "images/legs/endlessForrest_500_281.jpg";
+    //bgImg.src = "images/legs/endlessForrest_500_281.jpg";
     //bgImg.src = "images/legs/guys-staring.jpg";
+    bgImg.src = "images/legs/staring_seamless.png";
     var bg = {
         srcWidth: 500,
         srcHeight: 281,
