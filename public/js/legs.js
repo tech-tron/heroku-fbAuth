@@ -7,6 +7,7 @@ $(document).ready(function () {
 
     var count = 0;
     var jumpCount = 0;
+    var points = 0;
 
 
     var cvs = document.getElementById("canvas");
@@ -66,7 +67,7 @@ $(document).ready(function () {
 
     var bgImg = new Image();
     bgImg.src = "images/legs/endlessForrest_500_281.jpg";
-    //bgImg.src = "images/legs/guys-staring.jpg";
+    //bgImg.src = "images/staring_seamless";  // i cant believe you didnt include the w and h
     var bg = {
         srcWidth: 500,
         srcHeight: 281,
@@ -76,7 +77,6 @@ $(document).ready(function () {
         xtrail: cvs.width,
         speed: moveSpeed
     }
-
     function drawBackground(){
         if(bg.xlead < -cvs.width - bg.speed){
             bg.xlead = cvs.width + bg.speed;
@@ -95,6 +95,59 @@ $(document).ready(function () {
         ctx.drawImage(bgImg,0,0,bg.srcWidth,bg.srcHeight,bg.xlead,0,bg.desWidth,bg.desHeight);
         ctx.drawImage(bgImg,0,0,bg.srcWidth,bg.srcHeight,bg.xtrail,0,bg.desWidth,bg.desHeight);
     }
+
+    var jumpImg = newImage();
+    jumpImg.src = "images/legs/didle_jump_637_312.png";
+
+    var jumpObsticle = {
+        srcX: 0,
+        srcY: 0,
+        srcWidth: 637,
+        srcHeight: 312,
+        col: 1,
+        desX: cvs.width * .1,
+        desY: cvs.height * .9,
+        desWidth: cvs.width * .3,
+        desHeight:cvs.height * .15,
+        speed: moveSpeed
+    }
+    jumpObsticle.desY = legs.desY + legs.desHeight;  // this should put us on the ground
+    jumpObsticle.desHeight = legs.desHeight / 3;  // id like it to be a third of the lady, maybe a half i d f k
+    jumpObsticle.desWidth = legs.desWidth * 5; // 5 times the lady
+    function score(){
+        points += 4;
+        console.log("scored: " + points);
+    }
+    function setRandomObsticle(){
+        jumpObsticle.desX = Math.floor(Math.random() * cvs.width) + cvs.width;
+    }
+    function checkCollision(){
+        if(jumpObsticle.desX < legs.desX + legs.desWidth
+            && jumpObsticle.desX > legs.desX + legs.desWidth){
+                console.log("you are over top of the dildos")
+            }
+    }
+    function drawJumpObsticle(){
+        if(jumpObsticle.desX > -jumpObsticle.desWidth){
+            jumpObsticle.desX += jumpObsticle.speed;
+            checkCollision();
+        } else {
+            setRandomObsticle();
+            score();
+
+        }
+
+        // drawl bad boy
+        ctx.drawImage(jumpImg,
+            count % jumpObsticle.col * jumpObsticle.srcWidth,
+            jumpObsticle.srcY,
+            jumpObsticle.srcWidth,
+            jumpObsticle.srcHeight,
+            jumpObsticle.desX,
+            jumpObsticle.desY,
+            jumpObsticle.desWidth,
+            jumpObsticle.desHeight)
+    }
     
 
     setInterval(function () {
@@ -102,7 +155,7 @@ $(document).ready(function () {
             console.log('Jump!!');
             legs.desY = legs.desY = cvs.height * .5 + jumpHeight;
             jumpCount--;
-            count = -1;
+            count = -1;  // freezes the image to frame 0
 
         } else {
             legs.desY = cvs.height * .5;
@@ -110,6 +163,7 @@ $(document).ready(function () {
         count++;
         drawBackground();
         drawLegs();
+        drawJumpObsticle();
 
     }, interval);
 
