@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smack Dat!! :Queen)</title>
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menumodal.css">
+    <link rel="stylesheet" href="css/legs.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+</head>
+<body>
+    <div id="topBanner" class="fixed-top">
+        <div id ="patreonBanner">
+                <img src="images/icons/patreon.png" alt="patreon banner image">
+        </div>
+        <div id="menuBtn">
+            <!-- <span class="glyphicon glyphicon-menu-hamburger"></span> -->
+            <img src="images/icons/blueMenuIcon.png" alt="menu icon">
+            <!-- <img src="images/icons/blueMenuAlt.png" alt="menu icon"> -->
+        </div>
+    </div>
+    <!-- The Modal -->
+    <div id="menuModal" class="cover">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close glyphicon glyphicon-remove"></span>
+
+            <button id="resumeBtn" type="button" class="btn btn-info">
+                Resume <span class="glyphicon glyphicon-thumbs-up"></span>
+            </button>
+            <button id="quitBtn" type="button" class="btn btn-danger">
+                Forfiet <span class="glyphicon glyphicon-thumbs-down"></span>
+            </button>
+        </div>
+    </div>
+    <script src="js/menuModal.js"></script>
+
+    <div class="footer">
+        <button id="btn1" class="btn">01</button>
+        <button id="btn1" class="btn">02</button>
+        <button id="btn1" class="btn">03</button>
+        <button id="btn1" class="btn">04</button>
+    </div>
+
+    <canvas id="canvas" width="300" height="300" style="border: 1px solid;"></canvas>
+    
+    
+    <script src="js/legs.js"></script>
+</body>
+</html>

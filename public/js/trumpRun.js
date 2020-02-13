@@ -1,6 +1,8 @@
 var cvs = document.getElementById("canvas");
         cvs.style.width = window.innerWidth + "px";
         cvs.style.height = window.innerHeight + "px";
+        var ctx = cvs.getContext("2d");
+
 
         cvs.addEventListener("mousemove", movePresident);
 
@@ -26,7 +28,6 @@ var cvs = document.getElementById("canvas");
             }
         }
 
-        var ctx = cvs.getContext("2d");
 
         var bgImg = new Image();
         bgImg.src = "images/decloration.jpg";

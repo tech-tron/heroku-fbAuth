@@ -22,6 +22,6 @@ footer{
     padding: 20vh 20vw;
 }
 #testImg img{
-    width: 100vw;
-    margin: 0;
+    width: 95%;
+    margin: 2.5% 5%;
 }
