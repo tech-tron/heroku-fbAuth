@@ -32,11 +32,13 @@ $(document).ready(function () {
 
 
     var leg = [
-        "images/legs/fastWalk_100_312.png",
-        "images/legs/fastWalk_130_312_twist_handSwing.png",
-        "images/legs/fastWalk_130_312_twist_headTurn.png",
-        "images/legs/fastWalk_130_312_twist_wierdBackwardHead.png",
-        "images/legs/fastWalk_130_312_twist.png"
+        "images/legs/heels_spring_156_312_addFrame2at4.png",
+        "images/legs/heels_spring_156_312_armAction_extraFrame.png",
+        "images/legs/heels_spring_156_312_armAction.png",
+        "images/legs/heels_spring_156_312_scrunch_exFr_smooth.png",
+        "images/legs/heels_spring_156_312_scrunch_extraFrame.png",
+        "images/legs/heels_spring_156_312_scrunch.png",
+        "images/legs/heels_spring_156_312.png"
     ];
 
     var legsImg = new Image();
@@ -44,7 +46,7 @@ $(document).ready(function () {
     var legs = {
         srcX: 0,
         srcY: 0,
-        srcWidth: 100,
+        srcWidth: 156,
         srcHeight: 312,
         col: 2,
         desX: cvs.width * .1,
@@ -157,35 +159,35 @@ $(document).ready(function () {
     var btn2 = document.getElementById("btn2");
     var btn3 = document.getElementById("btn3");
     var btn4 = document.getElementById("btn4");
+    var btn5 = document.getElementById("btn5");
+    var btn6 = document.getElementById("btn6");
 
     btn0.onclick = function(e) {
-        legsImg.src = leg[0];  // fastWalk
-        legs.srcWidth = 100;
-        legs.srcheight = 312;
-        legs.col = 2;
+        legsImg.src = leg[0];
+        legs.col = 3;
     }
     btn1.onclick = function(e) {
-        legsImg.src = leg[1];  // shortSpringStep
-        legs.srcWidth = 130;
-        legs.srcHeight = 312;
-        legs.col = 2;
+        legsImg.src = leg[1];
+        legs.col = 4;
     }
     btn2.onclick = function(e) {
-        legsImg.src = leg[2];  // sprint
-        legs.srcWidth = 130;
-        legs.srcHeight = 312;
-        legs.col = 2;
+        legsImg.src = leg[2];
+        legs.col = 4;
     }
     btn3.onclick = function(e) {
-        legsImg.src = leg[3];  // justCurious
-        legs.srcWidth = 130;
-        legs.srcheight=  312;
-        legs.col = 2;
+        legsImg.src = leg[3];
+        legs.col = 4;
     }
     btn4.onclick = function(e) {
-        legsImg.src = leg[4];  // sprinter
-        legs.srcWidth = 130;
-        legs.srcHeight = 312;
-        legs.col = 2;
+        legsImg.src = leg[4];
+        legs.col = 3;
+    }
+    btn5.onclick = function(e) {
+        legsImg.src = leg[5];
+        legs.col = 4;
+    }
+    btn6.onclick = function(e) {
+        legsImg.src = leg[6];
+        legs.col = 4;
     }
 });

@@ -32,11 +32,16 @@ $(document).ready(function () {
 
 
     var leg = [
-        "images/legs/fastWalk_100_312.png",
-        "images/legs/fastWalk_130_312_twist_handSwing.png",
-        "images/legs/fastWalk_130_312_twist_headTurn.png",
-        "images/legs/fastWalk_130_312_twist_wierdBackwardHead.png",
-        "images/legs/fastWalk_130_312_twist.png"
+        "images/legs/justCurious_100_312.png",
+        "images/legs/justCurious_130_312_twist_handSwing.png",
+        "images/legs/justCurious_130_312_twist_headTurn.png",
+        "images/legs/justCurious_130_312_twist_wierdBackwardHead.png",
+        "images/legs/justCurious_130_312_twist.png",
+        "images/legs/justCurious_156_kick_pFR_headturn.png",        
+        "images/legs/justCurious_156_kick_pFR_sameHand.png",        
+        "images/legs/justCurious_156_kick_pFR_.windUppng",
+        "images/legs/justCurious_156_kick_plusFrame.png",        
+        "images/legs/justCurious_156_kick.png",       
     ];
 
     var legsImg = new Image();
@@ -44,7 +49,7 @@ $(document).ready(function () {
     var legs = {
         srcX: 0,
         srcY: 0,
-        srcWidth: 100,
+        srcWidth: 156,
         srcHeight: 312,
         col: 2,
         desX: cvs.width * .1,
@@ -65,8 +70,6 @@ $(document).ready(function () {
     }
 
     var bgImg = new Image();
-    //bgImg.src = "images/legs/endlessForrest_500_281.jpg";
-    //bgImg.src = "images/legs/guys-staring.jpg";
     bgImg.src = "images/legs/staring_seamless.png";
     var bg = {
         srcWidth: 474,
@@ -77,7 +80,6 @@ $(document).ready(function () {
         xtrail: cvs.width,
         speed: moveSpeed
     }
-
     function drawBackground(){
         if(bg.xlead < -cvs.width - bg.speed){
             bg.xlead = cvs.width + bg.speed;
@@ -157,35 +159,63 @@ $(document).ready(function () {
     var btn2 = document.getElementById("btn2");
     var btn3 = document.getElementById("btn3");
     var btn4 = document.getElementById("btn4");
+    var btn5 = document.getElementById("btn5");
+    var btn6 = document.getElementById("btn6");
+    var btn7 = document.getElementById("btn7");
+    var btn8 = document.getElementById("btn8");
 
     btn0.onclick = function(e) {
-        legsImg.src = leg[0];  // fastWalk
+        legsImg.src = leg[0];
         legs.srcWidth = 100;
-        legs.srcheight = 312;
+        legs.srcHeight = 312;
         legs.col = 2;
     }
     btn1.onclick = function(e) {
-        legsImg.src = leg[1];  // shortSpringStep
+        legsImg.src = leg[1];
         legs.srcWidth = 130;
         legs.srcHeight = 312;
         legs.col = 2;
     }
     btn2.onclick = function(e) {
-        legsImg.src = leg[2];  // sprint
+        legsImg.src = leg[2];
         legs.srcWidth = 130;
         legs.srcHeight = 312;
-        legs.col = 2;
+        legs.col = 2;    
     }
     btn3.onclick = function(e) {
-        legsImg.src = leg[3];  // justCurious
-        legs.srcWidth = 130;
-        legs.srcheight=  312;
-        legs.col = 2;
-    }
-    btn4.onclick = function(e) {
-        legsImg.src = leg[4];  // sprinter
+        legsImg.src = leg[3];
         legs.srcWidth = 130;
         legs.srcHeight = 312;
-        legs.col = 2;
+        legs.col = 2;  
+    }
+    btn4.onclick = function(e) {
+        legsImg.src = leg[4];
+        legs.srcWidth = 130;
+        legs.srcHeight = 312;
+        legs.col = 2;  
+    }
+    btn5.onclick = function(e) {
+        legsImg.src = leg[5];
+        legs.srcWidth = 156;
+        legs.srcHeight = 156;
+        legs.col = 2;  
+    }
+    btn6.onclick = function(e) {
+        legsImg.src = leg[5];
+        legs.srcWidth = 156;
+        legs.srcHeight = 156;
+        legs.col = 2;  
+    }
+    btn7.onclick = function(e) {
+        legsImg.src = leg[5];
+        legs.srcWidth = 156;
+        legs.srcHeight = 156;
+        legs.col = 3;  
+    }
+    btn8.onclick = function(e) {
+        legsImg.src = leg[5];
+        legs.srcWidth = 156;
+        legs.srcHeight = 156;
+        legs.col = 3;  
     }
 });

@@ -32,11 +32,11 @@ $(document).ready(function () {
 
 
     var leg = [
-        "images/legs/fastWalk_100_312.png",
-        "images/legs/fastWalk_130_312_twist_handSwing.png",
-        "images/legs/fastWalk_130_312_twist_headTurn.png",
-        "images/legs/fastWalk_130_312_twist_wierdBackwardHead.png",
-        "images/legs/fastWalk_130_312_twist.png"
+        "images/legs/heels_shortSpring_156_312_cabera.png",
+        "images/legs/heels_shortSpring_156_312_flipFlop.png",
+        "images/legs/heels_shortSpring_156_312_hopHop.png",
+        "images/legs/heels_shortSpring_156_312_scissorHalf.png",
+        "images/legs/heels_shortSpring_156_312.png"
     ];
 
     var legsImg = new Image();
@@ -44,7 +44,7 @@ $(document).ready(function () {
     var legs = {
         srcX: 0,
         srcY: 0,
-        srcWidth: 100,
+        srcWidth: 156,
         srcHeight: 312,
         col: 2,
         desX: cvs.width * .1,
@@ -160,32 +160,17 @@ $(document).ready(function () {
 
     btn0.onclick = function(e) {
         legsImg.src = leg[0];  // fastWalk
-        legs.srcWidth = 100;
-        legs.srcheight = 312;
-        legs.col = 2;
     }
     btn1.onclick = function(e) {
         legsImg.src = leg[1];  // shortSpringStep
-        legs.srcWidth = 130;
-        legs.srcHeight = 312;
-        legs.col = 2;
     }
     btn2.onclick = function(e) {
         legsImg.src = leg[2];  // sprint
-        legs.srcWidth = 130;
-        legs.srcHeight = 312;
-        legs.col = 2;
     }
     btn3.onclick = function(e) {
         legsImg.src = leg[3];  // justCurious
-        legs.srcWidth = 130;
-        legs.srcheight=  312;
-        legs.col = 2;
     }
     btn4.onclick = function(e) {
         legsImg.src = leg[4];  // sprinter
-        legs.srcWidth = 130;
-        legs.srcHeight = 312;
-        legs.col = 2;
     }
 });
