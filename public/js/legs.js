@@ -19,36 +19,14 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    var leg = [
-            "images/legs/fastWalk_100_312.png", // checks out
-            "images/legs/heels_shortSpring_156_312.png",  // changed from 100 to correct 156
-            "images/legs/heels_sprint_156_312.png",  // checks out col 3
-            "images/legs/justCurious_100_312.png",
-            "images/legs/leg_sprinter_156_100.png"  // flipped and fixed width title
-    ];
-
     var legsImg = new Image();
-    legsImg.src = leg[Math.floor(Math.random() * leg.length)];
+    legsImg.src = "images/legs/heels_sprint_156_312.png";  // changed from 100 to correct 156;
     var legs = {
         srcX: 0,
         srcY: 0,
-        srcWidth: 100,
+        srcWidth: 156,
         srcHeight: 312,
-        col: 2,
+        col: 3,
         desX: cvs.width * .1,
         desY: cvs.height * .5,
         desWidth: cvs.width * .2,
@@ -79,6 +57,7 @@ $(document).ready(function () {
     }
     bg.desHeight = legs.desY + legs.desHeight;
     function drawBackground(){
+        ctx.fillRect(0,0,cvs.width,cvs.height);
         if(bg.xlead < -cvs.width){
             bg.xlead = cvs.width;
         } else {
@@ -113,12 +92,17 @@ $(document).ready(function () {
 
 
 
-
     function score(){
         points += 4;
         console.log("scored: " + points);
     }
     function setRandomObsticle(){
+        if(Math.random() > .5){
+            jumpObsticle.state = true;
+        } else {
+            jumpObsticle.state = false;
+        }
+        //jumpObsticle.state = false;
         if(jumpObsticle.state == true){
             setJump();
         } else {
@@ -144,7 +128,7 @@ $(document).ready(function () {
         srcWidth: 637,
         srcHeight: 312,
         col: 1,
-        desX: -cvs.width,
+        desX: cvs.width,
         desY: 1,
         desWidth: 1,
         desHeight: 1,
@@ -158,19 +142,21 @@ $(document).ready(function () {
         jumpObsticle.desWidth = legs.desWidth * 3; // 5 times the lady
     }
     function checkJump(){
-        if(legs.desX + legs.desWidth > jumpObsticle.desX
-            && legs.desX < jumpObsticle.desX + jumpObsticle.desWidth){
-                console.log("you are over top of the dildos")
-                point++;
-                if(jumpCount <= 0){
-                    console.log('You loose');
-                    gameOver = true;
-                }
+        //console.log("check Jump @" + jumpObsticle.desX);
+        if(legs.desX + legs.desWidth > jumpObsticle.desX 
+            && legs.desX < jumpObsticle.desX){
+            console.log("you are over top of the dildos")
+            points++;
+            if(jumpCount <= 0){
+                console.log('You loose');
+                gameOver = true;
             }
+        }
     }
     function drawJumpObsticle(){
+        //console.log("draw dildo train!");
         if(jumpObsticle.desX > -jumpObsticle.desWidth){
-            //console.log(jumpObsticle.desX);
+            //console.log("dildos @ " + duckObsticle.desX);
             jumpObsticle.desX += jumpObsticle.speed;
             checkJump();
         } else {
@@ -203,11 +189,11 @@ $(document).ready(function () {
         srcWidth: 624,
         srcHeight: 312,
         col: 1,
-        desX: -cvs.width,
+        desX: cvs.width,
         desY: 0,
-        desWidth: cvs.width * .3,
-        desHeight:cvs.height * .15,
-        speed: moveSpeed * 3,
+        desWidth: 1,
+        desHeight: 1,
+        speed: moveSpeed,
         state: true,
         lengthMultiplier: 2
     }
@@ -218,21 +204,21 @@ $(document).ready(function () {
     }
     
     function checkDuck(){
-        if(duckObsticle.desX < legs.desX + legs.desWidth
-            && duckObsticle.desX > legs.desX){
-                if(state == false){
-                    console.log('You loose');
+        if(duckObsticle.desX < legs.desX + legs.desWidth){
+            //&& duckObsticle.desX + duckObsticle.width < legs.desX){
+                if(duckObsticle.state == false){
+                    console.log('You got hit in the face with a giant dildo!!');
                     gameOver = true;
                 } else {
-                    point++;
-                    console.log("you are under the dildos");
+                    points++;
+                    console.log("ducking under the dildos");
                 }
             }
     }
-    function drawJumpObsticle(){
-        if(jumpObsticle.desX + jumpObsticle.desWidth > legs.desX){
-            //console.log(jumpObsticle.desX);
-            jumpObsticle.desX += jumpObsticle.speed;
+    function drawDuckObsticle(){
+        if(duckObsticle.desX + duckObsticle.desWidth > legs.desWidth + legs.desWidth*2){
+            //console.log("dildo flying @" + duckObsticle.desX);
+            duckObsticle.desX += duckObsticle.speed;
             checkDuck();
         } else {
             setRandomObsticle();
@@ -248,10 +234,20 @@ $(document).ready(function () {
             duckObsticle.desX,
             duckObsticle.desY,
             duckObsticle.desWidth,
-            duckObsticle.desHeight)
+            duckObsticle.desHeight);
     }
     
 
+
+
+
+
+
+
+
+
+
+    setRandomObsticle();
     setInterval(function () {
         if(gameOver == false){
             if(jumpCount > 0){
@@ -267,8 +263,10 @@ $(document).ready(function () {
             drawBackground();
             drawLegs();
             if(jumpObsticle.state == true){
+                //console.log("jump opsticle");
                 drawJumpObsticle();
             } else {
+                //console.log("duck opsticle");
                 drawDuckObsticle();
             }
         } else {
@@ -288,10 +286,13 @@ $(document).ready(function () {
 
 
 
+
+
+
+
     var jumpSound = new Audio("audio/boing.wav");
 
     document.body.onkeyup = function(e){
-        console.log("space was hit!!");
         if(e.keyCode == 32){
             if(jumpCount <= 0){
                 jumpCount = jumpDelay;
@@ -303,53 +304,31 @@ $(document).ready(function () {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    var btn0 = document.getElementById("btn0");
-    var btn1 = document.getElementById("btn1");
-    var btn2 = document.getElementById("btn2");
-    var btn3 = document.getElementById("btn3");
-    var btn4 = document.getElementById("btn4");
-
-    btn0.onclick = function(e) {
-        legsImg.src = leg[0];  // fastWalk
-        legs.srcWidth = 100;
-        legs.srcheight = 312;
-        legs.col = 2;
-    }
-    btn1.onclick = function(e) {
-        legsImg.src = leg[1];  // shortSpringStep
-        legs.srcWidth = 156;
-        legs.srcHeight = 312;
-        legs.col = 2;
-    }
-    btn2.onclick = function(e) {
-        legsImg.src = leg[2];  // sprint
-        legs.srcWidth = 156;
-        legs.srcHeight = 312;
-        legs.col = 3;
-    }
-    btn3.onclick = function(e) {
-        legsImg.src = leg[3];  // justCurious
-        legs.srcWidth = 100;
-        legs.srcheight=  312;
-        legs.col = 2;
-    }
-    btn4.onclick = function(e) {
-        legsImg.src = leg[4];  // sprinter
-        legs.srcWidth = 156;
-        legs.srcHeight = 100;
-        legs.col = 2;
-    }
+    var finalX = 0;
+    var initialX = 0;
+    document.addEventListener('mousedown', e => {
+        initialX = e.clientY;
+        legs.srcY = legs.srcHeight;
+        console.log(legs.srcY);
+        duckObsticle.state = true;
+    });
+    document.addEventListener('mouseup', e => {
+        finalX = e.clientY;
+        legs.srcY = 0;
+        duckObsticle.state = false;
+        if(finalX - initialX < 0){
+            //positive slop
+            if(jumpCount <= 0){
+                jumpCount = jumpDelay;
+                jumpSound.currentTime = 0;
+                jumpSound.play();
+                //jumpSound.currentTime = 0;
+            }
+            console.log('up swipe!!');
+        }
+        else{
+            console.log('down swipe');
+            
+        }
+    });
 });
