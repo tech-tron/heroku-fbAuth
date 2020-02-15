@@ -5,20 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Garbissh</title>
+    <title>grrbish</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+
+    <!-- dont forget
+    
+        we can lose either bootstap css or js
+        dont forget
+        to lose one of them
+    -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <script src="js/fb.js"></script>
-    <img id="bannerLogo" src="images/logo/logo_00.jpg" />
 
-    <div class="sticky-top">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <header>
+        <div class="row">
+            <!-- test to see if just a col can stretch the image -->
+            <img class="col-12-sm" src="images/logo/logo_01.jpg" />
+        </div>
+
+        <img id="bannerLogo" src="images/logo/logo_01.jpg" />
+
+        <nav class="sticky-top navbar navbar-expand-md navbar-dark bg-dark mb-4">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Garbissh</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -26,7 +38,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-    
+
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
@@ -39,92 +51,188 @@
                         <a class="nav-link" href="smackQueen.html">Punch Granny</a>
                     </li>
                 </ul>
-    
+
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a id="logout" href="#" onclick="logout()">logout</a>
                     </li>
-    
+
                     <fb:login-button id="fb-btn" scope="public_profile,email,user_birthday,user_location"
                         onlogin="checkLoginState();">
                     </fb:login-button>
                 </ul>
             </div>
         </nav>
-    </div>
 
+        <div id="humbleBrag" class="container">
+            <div id="heading">
+                <!-- statement -->
+                <h1>Phillip is Awesome!</h1>
+                <p align="center">Join
+                    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                    </fb:login-button>
+                    to agree!!
+                </p>
 
-
-
-
-    <img id="bannerLogo" src="images/logo/logo_10.jpg" />
-
-
-    <div class="container">
-        <div id="heading">
-            <h1>Phillip is Awesome!</h1>
-            <p align="center">Join
-                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                </fb:login-button>
-                to agree!!
-            </p>
-
-            <br>
-
-            <h3>
-                Log in to view your profile
-            </h3>
+                <br>
+                <!-- you should do it -->
+                <h3>
+                    Log in to view your profile
+                </h3>
+            </div>
+            <div id="profile">
+                <p>Lori ipsom</p>
+            </div>
         </div>
-        <div id="profile">
-            <p>Lori ipsom</p>
+    </header>
+
+
+
+
+
+    <main role="main">
+        <!-- temperary header to let me know what tf is going on -->
+        <h3>
+            Blastastic Gaming
+        </h3>
+        <div id="gameContainer" class="contaier">
+            <div class="row" id="gameObj">
+                <div class="col-sm-4 col-xs-12">
+                    <!-- this should probably be a canvas
+                        noooooo 
+                        this should be a vido
+                        or a gif                    
+                    -->
+
+                    <!-- on hover the gif plays
+                        or as scrolling
+                        scrolling would probably be better
+                        i build this website for the phone
+                        and the phone only
+                        OR NOTHING ELSE
+                    -->
+
+
+                    <!-- test img just for now -->
+                    <img src="images/legs/dildo_duckUnder_624_312.png" alt="" id="catagoryImg">
+                </div>
+                <div class="col-sm-8 col-xs-12">
+                    <a href="legs.html">
+                        <button class="btn btn-primary">
+                            Dildo Hopper
+                            <!-- Bonner Runner -->
+                        </button>
+                    </a>
+                </div>
+                <div class="col-sm-8 col-xs-0" id="mainBio">
+                    <!-- i think this will be set in the js  -->
+                    <p>Think your life sucks?!?!</p>
+                    <p>
+                        TRY BEING GIRL!!!
+                    </p>
+                    <p>
+                        Life's a jungle out there.
+                        See how far you can navigate the busy streets of <bold>Your City</bold>.
+                    </p>
+                    <p>
+                        This game has been set up in a way to target major cities mayors and demographics; 
+                        along with landmarks. 
+                        Wider demographics, wider audience. 
+                        One game for every major city in the world!! 
+                        Global Domination..
+                    </p>
+                </div>
+            </div>
+            <!-- End Dildo Game Row  -->
+            <div class="row" id="gameObj">
+                <div class="col-sm-4 col-xs-12">
+                    <img src="images/queen/queen/queenSmack_156_231_alt.png" 
+                        alt="a sprite sheet of queen elizabith hands alternating up and down"
+                         id="catagoryImg">
+                </div>
+                <div class="col-sm-8 col-xs-12">
+                    <a href="smackQueen.html">
+                        <button class="btn btn-primary">
+                            Fight Her Holiness
+                        </button>
+                    </a>
+                </div>
+                <div class="col-sm-8 col-xs-0" id="mainBio">
+                    <p>
+                        Being subject to the Queen gotcha down?
+                    </p>
+                    <p>
+                        Nows your chance to beat them taxes outta her ugly ass
+                    </p>
+                </div>
+            </div>
+
+            <div class="row" id="gameObj">
+                <div class="col-sm-4 col-xs-12">
+                    <img src="images/chinaBomb_156_360.png" alt="" id="catagoryImg">
+                </div>
+                <div class="col-sm-8 col-xs-12">
+                    <a href="trumpRun.html">
+                        <button class="btn btn-primary">
+                            Speedo Trumpiedo
+                        </button>
+                    </a>
+                </div>
+                <div class="col-sm-8 col-xs-0" id="mainBio">
+                    <p>
+                        Never planned on being president?
+                    </p>
+                    <p>
+                        Is Your life a joke?
+                    </p>
+                    <p>
+                        Wish you could outrun your trade deal with china?
+                    </p>
+                    <p>
+                        Now you can
+                    </p>
+                </div>
+            </div>
+            <div id="testImg" class="row">
+                <img class="col-xs-4  col-lg-12" src="images/logo/logo_02.jpg" />
+                <img class="col-xs-4  col-lg-12" src="images/logo/logo_04.jpg" />
+                <img class="col-xs-4  col-lg-12" src="images/logo/logo_05.jpg" />
+                <img class="col-xs-4  col-lg-12" src="images/logo/logo_06.jpg" />
+                <img class="col-xs-4  col-lg-12" src="images/logo/logo_07.jpg" />
+                <img class="col-xs-4  col-lg-12" src="images/logo/logo_09.jpg" />
+            </div>
         </div>
-    </div>
-
-    <div id="testImg">
-        <img src="images/logo/logo_00.jpg" />
-        <img src="images/logo/logo_01.jpg" />
-        <img src="images/logo/logo_02.jpg" />
-        <img src="images/logo/logo_04.jpg" />
-        <img src="images/logo/logo_05.jpg" />
-        <img src="images/logo/logo_06.jpg" />
-        <img src="images/logo/logo_07.jpg" />
-        <img src="images/logo/logo_08.jpg" />
-        <img src="images/logo/logo_09.jpg" />
-        <img src="images/logo/logo_10.jpg" />
-    </div>
 
 
-
-    <footer class="btn-group btn-group-sm btn-group-vertical d-flex flex-column">
-        <button type=" button" class="btn btn-danger">
-            <a href="trumpRun.html">
-                Run Trump</a>
-        </button>
-        <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                Trump Punch</button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="punch.html">Ver 01</a></li>
-                <li><a href="orgPunch.html">Ver 00</a></li>
-            </ul>
+        <div class="container">
+            <div class="btn-group btn-group-sm btn-group-vertical d-flex flex-column">
+                
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Trump Punch</button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="punch.html">Ver 01</a></li>
+                        <li><a href="orgPunch.html">Ver 00</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Legs</button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="legs.html">Origional</a></li>
+                        <li><a href="legs-fastWalk.html">Fast tWalk</a></li>
+                        <li><a href="legs-justCurious.html">Booty Shake</a></li>
+                        <li><a href="legs-shortSprint.html">Quick Sprint</a></li>
+                        <li><a href="legs-sprint.html">Deep Sprint</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <button type="button" class="btn btn-danger">
-            <a href="smackQueen.html">Smack Da Queen</a>
-        </button>
-        <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                Legs</button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="legs.html">Origional</a></li>
-                <li><a href="legs-fastWalk.html">Fast tWalk</a></li>
-                <li><a href="legs-justCurious.html">Booty Shake</a></li>
-                <li><a href="legs-shortSprint.html">Quick Sprint</a></li>
-                <li><a href="legs-sprint.html">Deep Sprint</a></li>
-            </ul>
-        </div>
-        <button type="button" class="btn btn-danger">
-            <a href="legGame.html">Dildo Hopper</a>
-        </button>
+    </main>
+
+
+    <footer class="container">
+        <p>&copy; grrbish 2019-2020</p>
     </footer>
 </body>
 
