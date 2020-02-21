@@ -1,0 +1,7 @@
+#game-container{
+    background: #000;
+}
+#game-container img{
+    height: 200px;
+    width: 100%;
+}

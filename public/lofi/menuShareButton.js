@@ -103,7 +103,7 @@ setInterval(() => {
         bulletCount--;
     } else {
         bullet.style.width = "0px";
-        document.getElementById('lofi-background').src = 'images/lofi-background.png';
+        background.src = 'images/lofi-background.png';
     }
 
 
