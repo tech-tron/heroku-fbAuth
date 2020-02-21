@@ -1,0 +1,121 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url("images/bg_background.jpg");
+    overflow: hidden;
+}
+
+.fancy{
+    font-family: 'Lobster', cursive;
+
+}
+#banner{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 100vw;
+}
+
+#ad-banner{
+    position: absolute;
+    top: 0;
+    left: 7%;
+    /* this drops the top padding around the whole banne3r/ */
+    margin-top: 3%;  
+    width: 70%;
+    /* margin: 5vh 0vh 5vw 5vw; */
+    height: 14vh;
+    /* border: 1px solid #7e65659d; */
+    border: 1px solid black;
+    border-radius: 2px;
+    float: left;
+    background-color: grey;
+}
+#ad-banner h1{
+    font-size: 70px;
+    color: white;
+    margin: 0;
+    margin-left: 15px;
+
+}
+#share-banner{
+    width: 19%;
+    /* background-color: seagreen; */
+    height: 9vh;
+    float: right;  
+    padding: 3px;  
+}
+#share-banner img{
+    float: right;
+
+    height: 99%;
+    width: 49%;
+    border-radius: 10px;
+}
+
+
+#pause-icon{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 16vh;
+    width: 28vw;
+    margin: 10px 5px;
+    z-index: 1;
+    background-color: orange;
+    border-radius: 50%;
+    border: 3px solid rgb(255, 65, 17);
+}
+#pause-icon h2{
+    margin-top: 17%;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    /* margin-top: 40%; */
+}
+
+#bg img{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+
+#menu-cover{
+    z-index: 2;
+    display: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 90%;
+    height: 90%;
+    border-top-left-radius: 50%;
+    background-color: rgba(255, 181, 70, 0.9);
+    border: 7px solid rgb(255, 65, 17);
+}
+#pause-menu {
+    width: 80%;
+    height: 85%;
+    float: right;
+    padding-top: 40%;
+}
+#pause-menu button{
+    z-index: 2;
+    position: relative;
+    bottom: 0;
+    float: right;
+    width: 96%;
+    height: 25%;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 40%;
+    background-color: rgb(163, 229, 255);
+    border: 1px solid rgb(34, 0, 73);
+}
+
+#bullet{
+    z-index: 1000;
+}

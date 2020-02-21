@@ -7,33 +7,31 @@
 
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/menumodal.css">
-    <link rel="stylesheet" href="css/legs.css">
+    <link rel="stylesheet" href="css/game.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
 </head>
 <body>
-    <div id="topBanner" class="fixed-top">
-        <div id ="patreonBanner">
+    <div id="banner" class="fixed-top">
+        <div id ="topLink">
                 <img src="images/icons/patreon.png" alt="patreon banner image">
         </div>
-        <div id="menuBtn">
+        <div id="menuIcon">
             <!-- <span class="glyphicon glyphicon-menu-hamburger"></span> -->
             <img src="images/icons/blueMenuIcon.png" alt="menu icon">
             <!-- <img src="images/icons/blueMenuAlt.png" alt="menu icon"> -->
         </div>
     </div>
     <!-- The Modal -->
-    <div id="menuModal" class="cover">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close glyphicon glyphicon-remove"></span>
-
+    <div id="menu-cover">
+        <div id="menu">
             <button id="resumeBtn" type="button" class="btn btn-info">
                 Resume <span class="glyphicon glyphicon-thumbs-up"></span>
+            </button>
+            <button id="restartBtn" type="button" class="btn btn-default">
+                Restart Game!!
             </button>
             <button id="quitBtn" type="button" class="btn btn-danger">
                 Forfiet <span class="glyphicon glyphicon-thumbs-down"></span>

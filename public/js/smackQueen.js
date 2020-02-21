@@ -126,20 +126,18 @@ $(document).ready(function () {
 
 
     var queensImg = new Image();
-    //queensImg.src = "images/queen/queen/queenSmack_156_231.png";
     queensImg.src = "images/queen/queen/queen_trial_punch_156_231.png";
     //the bow flip makes her seem so crazy
     //which i love/
     //but its to fast
     //maybe crop her hat to not flip
     //just have her face wigging out randomly
-
-    //queensImg.src = "images/queen/queenSmack_156_231_alt.png";
+    
     const queen = {
         xRange: cvs.width * .1,
         yRange: 231 / 3, // half the source width
         wobbleSpeed: 5,
-        jumpSpeed: 1,
+        jumpSpeed: 1,  // not sure what this does but changed it from one to five
         //kinda want her much fatter
         //thick like a truck
         srcWidth: 156,
@@ -151,13 +149,15 @@ $(document).ready(function () {
         srcY: 0,
         startY: 20,
         isSmack: false,
-        randSmackCount: 0
+        randSmackCount: 0,
+        smackMaxCount: 7,
+        smackMinimum: 3,
+        pause: 4,  // amopunt of time she pauses COCKS her punch back
+        punchCount: 2,  // how long she punches for
+        glideSpeed: 0
     }
     var gaurdsImg = new Image();
     gaurdsImg.src = "images/queen/gaurd/army.jpg";
-    gaurdsImg.src = "images/queen/gaurd/faces.jpg";
-    gaurdsImg.src = "images/queen/gaurd/hats off _cheering.jpg";
-    gaurdsImg.src = "images/queen/gaurd/straight line.jpg";
     //gaurdsImg.src = "images/queen/gaurd/wall.jpg";
     const gaurd = {
         desY: 0,
@@ -168,36 +168,45 @@ $(document).ready(function () {
 
     function getRandSmackCount(){
         queen.randSmackCount = 
-            Math.floor(Math.random() * smackMaxCount) + smackMinimum;
-        queen.isSmack == false;
+            Math.floor(Math.random() * queen.smackMaxCount) + queen.smackMinimum;
+        queen.isSmack = false;
+        console.log("random smack count set @" + queen.randSmackCount);
+        count = -1;
+        console.log("queen smack is "+ queen.isSmack);
+    }
+    function aboutToPunch(){
+        console.log("Drawl The Bitch!!!!");
+        // assum the punch position
+        //queen.srcX = queen.srcWidth * 1;
+        //queen.desX += queen.glideSpeed;
+        // maybe a sound too
     }
     function queenSmack(){
         if(count < queen.pause){
-            queen.srcX = srcWidth * 1;
+            aboutToPunch();
+            //console.log("queen is aiming her fucking punch ");
         }else if(count < queen.punchCount){
+            // punch position
+            // throw punch
+            // wait is over
+            //should have chose
+            //IE
+            //checkImpact();
+            console.log("oh shit its over she done punched");
             queen.srcX = queen.srcWidth * 2;
         }
         else{
-            queen.isSmack = false;
-            count = -1;
+            getRandSmackCount();
         }
-        ctx.drawImage(queensImg,
-            queen.srcX,
-            queen.srcY,
-            queen.srcWidth,
-            queen.srcHeight,
-            queen.desX,
-            queen.desY,
-            queen.desWidth,
-            queen.desHeight
-            );
+        //draw the fucking image
+        ctx.drawImage(queensImg,queen.srcX,queen.srcY ,queen.srcWidth,queen.srcHeight,
+            queen.desX,queen.desY,queen.desWidth,queen.desHeight);
+        //ctx.drawImage(queensImg,0,0,queen.srcWidth,queen.srcHeight,0,0,cvs.width,cvs.height);
     }
     function drawQueen() {
         queen.desX += queen.wobbleSpeed;
-        if (queen.desX >= queen.xRange) {
-            queen.wobbleSpeed *= -1;
-        }
-        else if (queen.desX <= -queen.xRange) {
+        if (queen.desX >= queen.xRange ||
+            queen.desX <= -queen.xRange) {
             queen.wobbleSpeed *= -1;
         }
         //the bottom of this range
@@ -205,39 +214,44 @@ $(document).ready(function () {
         //that her chin is on the bottom of the screen
         //bc her hat is the screen
         if (count % 3) {
-            queen.srcY = Math.random() * queen.yRange;
-            queen.srcY + queen.startY;
+            //so youre math randoming every third iteration, seems kinda taxing on the memory but ok
+            // does why range not exist anymore, why doesnt she bounce!!!!!
+            queen.desY = Math.random() * queen.yRange;  // fancy math to make the eye hole move around on the zoom image
+            //queen.desY + queen.startY;
         }
+        queen.srcY = (queen.srcHeight * (count % 2));
         ctx.drawImage(queensImg,
             0,
-            (queen.srcHeight * (count % 2) * 5 / 3)
-            + queen.srcY,
+            queen.srcY,
             queen.srcWidth,
             queen.srcHeight,
             queen.desX,
-            0,  // desY doesnt exist now
+            //0,  // desY doesnt exist yet
+            queen.desY,
             cvs.width,
             cvs.height
         );
         
-        if(count % randSmackCount == 0){
+        if(count % queen.randSmackCount == 0
+            && count > 0){
             queen.isSmack = true;
-            count = 0;
+            count = -1;
+            queen.srcX = queen.srcWidth;
         }
     }
 
     setInterval(function () {
         count++;
         //rabbit bounce
-        if(count % 2 == 0){
-            guard.desY = gaurd.bounce;
-        } else {
-            gaurd.desY = 0;
-        }
-        ctx.drawImage(gaurdsImg,0, guard.desY, cvs.width, cvs.height);
+        // if(count % 2 == 0){
+        //     gaurd.desY = gaurd.bounce;
+        // } else {
+        //     gaurd.desY = 0;
+        // }
+        ctx.drawImage(gaurdsImg,0, gaurd.desY, cvs.width, cvs.height);
         if(queen.isSmack == true){
             queenSmack();
-        }{
+        } else {
             drawQueen();
             drawClouds();
             drawHands();

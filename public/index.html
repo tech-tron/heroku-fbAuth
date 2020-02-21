@@ -7,32 +7,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>grrbish</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 
-    <!-- dont forget
-    
-        we can lose either bootstap css or js
-        dont forget
-        to lose one of them
-    -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <script src="js/fb.js"></script>
 
     <header>
-        <div class="row">
+        <div class="row" id="splash-banner">
             <!-- test to see if just a col can stretch the image -->
-            <img class="col-12-sm" src="images/logo/logo_01.jpg" />
+            <img class="col-xs-12" src="images/icons/logo/logo_01.jpg" />
         </div>
-
-        <img id="bannerLogo" src="images/logo/logo_01.jpg" />
-
-        <nav class="sticky-top navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Garbissh</a>
+                <a class="navbar-brand" href="#">
+                    grrbish
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -42,13 +43,28 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="punch.html">FightTrump</a>
+                        <a class="nav-link" href="punch.html">Games</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="trumpRun.html">RunTrump</a>
+                        <a class="nav-link" href="trumpRun.html">Articles</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="smackQueen.html">Punch Granny</a>
+                        <a class="nav-link" href="smackQueen.html">Privacy</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown03"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown03">
+                            <a class="dropdown-item" href="terms.html">
+                                term and condition</a>
+                            <a class="dropdown-item" href="privacy-policy.html">
+                                privacy policy</a>
+                            <a class="dropdown-item" href="about.html">
+                                about</a>
+                            <a href="contact.html" class="dropdown-item">
+                                contact
+                            </a>
+                        </div>
                     </li>
                 </ul>
 
@@ -64,175 +80,189 @@
             </div>
         </nav>
 
-        <div id="humbleBrag" class="container">
-            <div id="heading">
-                <!-- statement -->
-                <h1>Phillip is Awesome!</h1>
-                <p align="center">Join
-                    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                    </fb:login-button>
-                    to agree!!
-                </p>
 
-                <br>
-                <!-- you should do it -->
-                <h3>
-                    Log in to view your profile
-                </h3>
+        <div class="container" id="companyBio">
+            <div class="row">
+                <!-- might do away with the image -->
+                <div class="col-sm-4 col-xs-12">
+                    <img src="" alt="this will be a personal picture that represents my company: values or beliefs"
+                        id="companyPic">
+                </div>
+                <div class="col-sm-8 col-xs-12">
+                    <p>
+                        Games are boring, fun, and meaningless. It's a game for godsake!!!
+                    </p>
+                    <p>
+                        <a href="#">@grrbish</a> gaming we believe in making trash games.
+                        If you think every game is the same and that youve see them all, so do we.
+                        Not here, you can throw that idea in the grrbish cus we bring things to your sight that have
+                        never been seen.
+                    </p>
+                    <p>
+                        So come look around. Play in the <a href="#">!grrbish</a> for a little while and see what doors
+                        you open up just to throw away!!!
+                    </p>
+                </div>
             </div>
-            <div id="profile">
-                <p>Lori ipsom</p>
+            <div class="row" id="coffeSection">
+                <div class="col-md-4 col-xs-12">
+                    <h1 class="float-right">
+                        2$
+                    </h1>
+                    <p>
+                        Buy me a cheap coffee
+                    </p>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <h1 class="float-right">
+                        7$
+                    </h1>
+                    <p>
+                        Buy me an expensive coffee
+                    </p>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <h1 class="float-right">20$</h1>
+                    <p>
+                        Buy me a meal
+                    </p>
+                </div>
             </div>
         </div>
     </header>
 
+    <main>
 
-
-
-
-    <main role="main">
-        <!-- temperary header to let me know what tf is going on -->
-        <h3>
-            Blastastic Gaming
-        </h3>
-        <div id="gameContainer" class="contaier">
-            <div class="row" id="gameObj">
-                <div class="col-sm-4 col-xs-12">
-                    <!-- this should probably be a canvas
-                        noooooo 
-                        this should be a vido
-                        or a gif                    
-                    -->
-
-                    <!-- on hover the gif plays
-                        or as scrolling
-                        scrolling would probably be better
-                        i build this website for the phone
-                        and the phone only
-                        OR NOTHING ELSE
-                    -->
-
-
-                    <!-- test img just for now -->
-                    <img src="images/legs/dildo_duckUnder_624_312.png" alt="" id="catagoryImg">
+        <div id="gameCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#gameCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#gameCarousel" data-slide-to="1"></li>
+                  <li data-target="#gameCarousel" data-slide-to="2"></li>
+                  <li data-target="#gameCarousel" data-slide-to="3"></li>                  
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img class="first-slide" src="images/queen/queen/queenSmack_156_231.png" alt="queen elizabeth punching sprite sheet">
+                    <div class="container">
+                      <div class="carousel-caption text-left">
+                        <h1>Punch Queen</h1>
+                        <p>
+                            Megan Markels intense fight with the queen to move her man out</p>
+                        <p>
+                            <a class="btn btn-lg btn-primary" href="games/smackQueen.html" role="button">
+                                Play
+                            </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img class="second-slide" src="images/punch/trump_rights.png" alt="sprite sheet of donald trump throwing right handed punches">
+                    <div class="container">
+                      <div class="carousel-caption">
+                        <h1>Punch Trump</h1>
+                        <p>
+                            Think your man enough to take on the president. 
+                            9 rounds to prove he really is your president!!!
+                        </p>
+                        <p><a class="btn btn-lg btn-primary" href="games/punch.html" role="button">
+                            Play</a></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img class="third-slide" src="images/legs/dildo_duckUnder_624_312.png" alt="Massive dildo in hand">
+                    <div class="container">
+                      <div class="carousel-caption text-right">
+                        <h1>dick's</h1>
+                        <p>
+                            a lady running through a concret jungle attempts to not get shit on by her average dude!
+                        </p>
+                        <p><a class="btn btn-lg btn-primary" href="games/legGame.html" role="button">
+                            Play</a></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img class="forth-slide" src="images/chinaBomb_156_360.png" alt="Hand drawn cartoon bomb, whole and exploaded with whinese star on side">
+                    <div class="container">
+                      <div class="carousel-caption text-right">
+                        <h1>Run Trump</h1>
+                        <p>
+                            Thank god this carousel is over!!!
+                        </p>
+                        <p><a class="btn btn-lg btn-primary" href="games/trumpRun.html" role="button">
+                            Play Game!!</a></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-sm-8 col-xs-12">
-                    <a href="legs.html">
-                        <button class="btn btn-primary">
-                            Dildo Hopper
-                            <!-- Bonner Runner -->
-                        </button>
-                    </a>
-                </div>
-                <div class="col-sm-8 col-xs-0" id="mainBio">
-                    <!-- i think this will be set in the js  -->
-                    <p>Think your life sucks?!?!</p>
+                <a class="carousel-control-prev" href="#gameCarousel" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#gameCarousel" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+        
+        
+              <!-- Marketing messaging and featurettes
+              ================================================== -->
+
+              <div class="container">
+                <div class="row" id="topGames">
+                  <div class="col-lg-4">
+                    <img class="rounded-circle" src="images/queen/queen/queenSmack_156_231.png" alt="queen elizabeth punching sprite sheet">
+                        <h2>
+                            Punch Queen
+                        </h2>
+                        <p>
+                            Megan Markels intense fight with the queen to move her man out
+                        </p>
                     <p>
-                        TRY BEING GIRL!!!
+                        <a class="btn btn-secondary" href="games/smackQueen.html" role="button">
+                            Play &raquo;
+                        </a>
                     </p>
+                  </div><!-- /.col-lg-4 -->
+                  <div class="col-lg-4">
+                    <img class="rounded-circle" src="images/punch/trump_rights.png" alt="sprite sheet of donald trump throwing right handed punches">
+                    <h2>Punch Trump</h2>
                     <p>
-                        Life's a jungle out there.
-                        See how far you can navigate the busy streets of <bold>Your City</bold>.
+                        Think your man enough to take on the president. 
+                        9 rounds to prove he really is your president!!!
                     </p>
-                    <p>
-                        This game has been set up in a way to target major cities mayors and demographics; 
-                        along with landmarks. 
-                        Wider demographics, wider audience. 
-                        One game for every major city in the world!! 
-                        Global Domination..
-                    </p>
-                </div>
-            </div>
-            <!-- End Dildo Game Row  -->
-            <div class="row" id="gameObj">
-                <div class="col-sm-4 col-xs-12">
-                    <img src="images/queen/queen/queenSmack_156_231_alt.png" 
-                        alt="a sprite sheet of queen elizabith hands alternating up and down"
-                         id="catagoryImg">
-                </div>
-                <div class="col-sm-8 col-xs-12">
-                    <a href="smackQueen.html">
-                        <button class="btn btn-primary">
-                            Fight Her Holiness
-                        </button>
-                    </a>
-                </div>
-                <div class="col-sm-8 col-xs-0" id="mainBio">
-                    <p>
-                        Being subject to the Queen gotcha down?
-                    </p>
-                    <p>
-                        Nows your chance to beat them taxes outta her ugly ass
-                    </p>
-                </div>
-            </div>
 
-            <div class="row" id="gameObj">
-                <div class="col-sm-4 col-xs-12">
-                    <img src="images/chinaBomb_156_360.png" alt="" id="catagoryImg">
-                </div>
-                <div class="col-sm-8 col-xs-12">
-                    <a href="trumpRun.html">
-                        <button class="btn btn-primary">
-                            Speedo Trumpiedo
-                        </button>
-                    </a>
-                </div>
-                <div class="col-sm-8 col-xs-0" id="mainBio">
-                    <p>
-                        Never planned on being president?
-                    </p>
-                    <p>
-                        Is Your life a joke?
-                    </p>
-                    <p>
-                        Wish you could outrun your trade deal with china?
-                    </p>
-                    <p>
-                        Now you can
-                    </p>
-                </div>
-            </div>
-            <div id="testImg" class="row">
-                <img class="col-xs-4  col-lg-12" src="images/logo/logo_02.jpg" />
-                <img class="col-xs-4  col-lg-12" src="images/logo/logo_04.jpg" />
-                <img class="col-xs-4  col-lg-12" src="images/logo/logo_05.jpg" />
-                <img class="col-xs-4  col-lg-12" src="images/logo/logo_06.jpg" />
-                <img class="col-xs-4  col-lg-12" src="images/logo/logo_07.jpg" />
-                <img class="col-xs-4  col-lg-12" src="images/logo/logo_09.jpg" />
-            </div>
-        </div>
-
-
-        <div class="container">
-            <div class="btn-group btn-group-sm btn-group-vertical d-flex flex-column">
-                
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Trump Punch</button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="punch.html">Ver 01</a></li>
-                        <li><a href="orgPunch.html">Ver 00</a></li>
-                    </ul>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Legs</button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="legs.html">Origional</a></li>
-                        <li><a href="legs-fastWalk.html">Fast tWalk</a></li>
-                        <li><a href="legs-justCurious.html">Booty Shake</a></li>
-                        <li><a href="legs-shortSprint.html">Quick Sprint</a></li>
-                        <li><a href="legs-sprint.html">Deep Sprint</a></li>
-                    </ul>
-                </div>
-            </div>
+                    <p><a class="btn btn-secondary" href="games/punch.html" role="button">
+                        Play &raquo;</a></p>
+                  </div><!-- /.col-lg-4 -->
+                  <div class="col-lg-4">
+                    <img class="rounded-circle" src="lofi/images/lofi_fireLeft.png" alt="shooting game photo of izzuki fireing weapon">
+                        <h2>lofi</h2>
+                        <p>
+                            a lady running through a concret jungle attempts to not get shit on by her average dude!
+                        </p>
+                    <p><a class="btn btn-secondary" href="lofi/index.html" role="button">
+                        Play &raquo;</a></p>
+                  </div><!-- /.col-lg-4 -->
+                </div><!-- /.row -->
         </div>
     </main>
 
 
+
+
+
+
+
+
+    <!-- FOOTER -->
     <footer class="container">
-        <p>&copy; grrbish 2019-2020</p>
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2019-2020 grrbish, Inc. &middot; <a href="privacy-policy.html">Privacy</a> &middot; <a
+                href="terms.html">Terms</a></p>
     </footer>
 </body>
 

@@ -1,7 +1,12 @@
+body{
+    width: 100%;
+    height: 100%;
+    background: #292727;
+}
 #profile, #logout{
     display: none;
 }
-#bannerLogo{
+#splash-banner img{
     width: 100%;
     height:100vh;
 }
@@ -17,16 +22,18 @@
     margin: 4px 2px;
     cursor: pointer;
 }
-footer{
-    height: 100vh;
-    padding: 20vh 20vw;
+
+.carousel img{
+    height: 80vh;
+    width: 100vw;
 }
+
 #testImg img{
     width: 95%;
     margin: 2.5% 5%;
 }
-#canvas{
-    position: absolute;
-    top: 0;
-    z-index: -1;
+
+#topGames img{
+    width: 100%;
+    height: 50vh;
 }
