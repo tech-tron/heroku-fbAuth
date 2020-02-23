@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cool, Share Button</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lofi-style.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- Latest compiled and minified CSS -->
@@ -18,8 +18,8 @@
 <body>
     <header id="banner">
         <div id="share-banner">
-            <img src="images/icons/instagram.jpeg" alt="Instagram Icon">
-            <img src="images/icons/facebook.png" alt="Facebook Icon">
+            <img id="instagram-icon" src="images/icons/instagram.jpeg" alt="Instagram Icon">
+            <img id="facebook-icon" src="images/icons/facebook.png" alt="Facebook Icon">
         </div>
         <div id="ad-banner">
             <h1 class="fancy">Ad's</h1>
@@ -42,6 +42,46 @@
                 </button>
             </div>
         </div>
+
+        <div id="share-cover">
+            <img src="../images/profile/joi-doi.jfif" alt="game dev joi-doi">
+            <div id="social-sticker">
+                <img src="../images/icons/facebook.png" alt="fb logo png">
+            </div>
+            <div id="social-intro">
+                <p>
+                    <small>
+                        <!-- i want this muted along with being small -->
+                        Hi, I'm
+                    </small>
+                </p>
+                <h3>
+                    Joi
+                </h3>
+            </div>
+            <div id="social-bio">
+                <p>
+                    I am the concept creator and lead developer of lofi gaming. 
+                    I also contribute to many articles, more than i'd like too lol.
+                </p>
+            </div>
+            <div id="social-actions">
+                <button id="follow-button">
+                    Follow
+                </button>
+                <button id="share-button">
+                    Share
+                </button>
+                <button id="download-button">
+                    Download app!!
+                </button>
+            </div>
+
+            <audio id="lofi-background-audio" src="../audio/testLofiLoop.wav" autoplay=""></audio>
+            <audio id="gun-audio" src="../audio/gun.wav"></audio>
+        </div>
+
+
         <div id="bg">
             <img src="images/bg_background.jpg" alt="wood siding texture">
             <img src="images/lofi-background.png" alt="suzooki sitting in a train with moster" id="lofi-background">
@@ -51,9 +91,8 @@
         </div>
 
 
+        
     </main>
-
-
 
 
     <footer id="pause-icon">
@@ -66,7 +105,7 @@
 
 
 
-    <script src="menuShareButton.js"></script>
+    <script src="lofi-game.js"></script>
 </body>
 
 </html>
