@@ -157,7 +157,7 @@ setInterval(() => {
 var quit = document.getElementById("quit-button");
 quit.addEventListener("click", () =>{
     console.log("go to homepage");
-    window.location ="../games/index.html"
+    window.location ="../games/index-game.html"
 })
 pause_icon.addEventListener("click", ()=>{
     console.log("pause icon clicked!!");
