@@ -341,6 +341,31 @@ $(document).ready(function () {
 
         }
     });
+    document.addEventListener('touchdown', e => {
+        initialX = e.clientY;
+        legs.srcY = legs.srcHeight;
+        console.log(legs.srcY);
+        duckObsticle.state = true;
+    });
+    document.addEventListener('touchup', e => {
+        finalX = e.clientY;
+        legs.srcY = 0;
+        duckObsticle.state = false;
+        if (finalX - initialX < 0) {
+            //positive slop
+            if (jumpCount <= 0) {
+                jumpCount = jumpDelay;
+                jumpSound.currentTime = 0;
+                jumpSound.play();
+                //jumpSound.currentTime = 0;
+            }
+            console.log('up swipe!!');
+        }
+        else {
+            console.log('down swipe');
+
+        }
+    });
 
 
 
