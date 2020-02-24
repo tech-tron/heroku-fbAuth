@@ -8,7 +8,7 @@ $(document).ready(function () {
     cvs.style.height = window.innerHeight + "px";
 
     var handsImg = new Image();
-    handsImg.src = "images/queen/smack/alt_hands.png";
+    handsImg.src = "../images/queen/smack/alt_hands.png";
 
     const hands = {
         srcX: 0,
@@ -25,9 +25,9 @@ $(document).ready(function () {
     }
 
     var lilCloudImg = new Image();
-    lilCloudImg.src = "images/queen/cloudBlue_156.png";
+    lilCloudImg.src = "../images/queen/cloudBlue_156.png";
     var bigCloudImg = new Image();
-    bigCloudImg.src = "images/queen/cloudWhite_156.png";
+    bigCloudImg.src = "../images/queen/cloudWhite_156.png";
     const cloud = {
         srcWidth: 156,
         bigCol: 2,
@@ -126,7 +126,7 @@ $(document).ready(function () {
 
 
     var queensImg = new Image();
-    queensImg.src = "images/queen/queen/queen_trial_punch_156_231.png";
+    queensImg.src = "../images/queen/queen/queen_trial_punch_156_231.png";
     //the bow flip makes her seem so crazy
     //which i love/
     //but its to fast
@@ -157,8 +157,8 @@ $(document).ready(function () {
         glideSpeed: 0
     }
     var gaurdsImg = new Image();
-    gaurdsImg.src = "images/queen/gaurd/army.jpg";
-    //gaurdsImg.src = "images/queen/gaurd/wall.jpg";
+    gaurdsImg.src = "../images/queen/gaurd/army.jpg";
+    //gaurdsImg.src = "../images/queen/gaurd/wall.jpg";
     const gaurd = {
         desY: 0,
         bounce: 5

@@ -65,10 +65,10 @@ main{
 
 .carousel-control-prev , .carousel-control-next{
     background-color: rgba(0,0,0,.6);
-    border-bottom-right-radius: -50%;
+    border-radius: 34%;
 }
 .carousel-item {
-    height: 70vh;
+    height: 90vh;
 }
 .carousel-item img {
     width: 80%;

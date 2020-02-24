@@ -45,7 +45,7 @@ let games = [
 ];
 var game_container = document.getElementById("game-container");
 var game_string = "";
-set_game_objects();
+//set_game_objects();
 
 function set_game_objects(){
     for(var i = 0; i < games.length; i++){

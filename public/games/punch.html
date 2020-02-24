@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Duck!!!</title>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/menumodal.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/menumodal.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -18,12 +18,12 @@
 <body>
     <div id="topBanner" class="fixed-top">
         <div id ="patreonBanner">
-                <img src="images/icons/patreon.png" alt="patreon banner image">
+                <img src="../images/icons/patreon.png" alt="patreon banner image">
         </div>
         <div id="menuBtn">
             <!-- <span class="glyphicon glyphicon-menu-hamburger"></span> -->
-            <img src="images/icons/blueMenuIcon.png" alt="menu icon">
-            <!-- <img src="images/icons/blueMenuAlt.png" alt="menu icon"> -->
+            <img src="../images/icons/blueMenuIcon.png" alt="menu icon">
+            <!-- <img src="../images/icons/blueMenuAlt.png" alt="menu icon"> -->
         </div>
     </div>
     <!-- The Modal -->
@@ -65,10 +65,10 @@ $(document).ready(function () {
             var bgImg = new Image();
             // only works in root folder
             // bgImg.src = "../images/bg_ufc.jpg";
-            bgImg.src = "images/punch/bg_boxing.jpg";
+            bgImg.src = "../images/punch/bg_boxing.jpg";
 
             var oppImg = new Image();
-            oppImg.src = "images/punch/trump_punch.png";
+            oppImg.src = "../images/punch/trump_punch.png";
 
             var opp = {
                 srcX: 0,
@@ -103,7 +103,7 @@ $(document).ready(function () {
                 maxDelay: 5  // max under of frames punch holds
             };
             var userImg = new Image();
-            userImg.src = "images/punch/boxing_gaurd.png";
+            userImg.src = "../images/punch/boxing_gaurd.png";
 
             var player = {
                 srcX: 0,

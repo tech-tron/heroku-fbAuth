@@ -30,7 +30,7 @@ var cvs = document.getElementById("canvas");
 
 
         var bgImg = new Image();
-        bgImg.src = "images/decloration.jpg";
+        bgImg.src = "../images/decloration.jpg";
         bg = {
             x: 0,
             y: 0,
@@ -39,7 +39,7 @@ var cvs = document.getElementById("canvas");
         }
 
         var fgImg = new Image();
-        fgImg.src = "images/crowd_420_156.png";
+        fgImg.src = "../images/crowd_420_156.png";
         fg = {
             srcWidth: 420,
             srcHeight: 156,
@@ -50,7 +50,7 @@ var cvs = document.getElementById("canvas");
         }
 
         var userImg = new Image();
-        userImg.src = "images/trump_gunHand.png";
+        userImg.src = "../images/trump_gunHand.png";
         var user = {
             desX: 100,
             desY: cvs.height / 2,
@@ -68,7 +68,7 @@ var cvs = document.getElementById("canvas");
         }
 
         var bombImg = new Image();
-        bombImg.src = "images/chinaBomb_156_360.png";
+        bombImg.src = "../images/chinaBomb_156_360.png";
         var explosionImg = new Image();
         explosion = {
             frameCount: 16,
@@ -81,7 +81,7 @@ var cvs = document.getElementById("canvas");
             desHeight: cvs.height / 3,
             north : false
         }
-        explosionImg.src = "images/explosion_156.png";
+        explosionImg.src = "../images/explosion_156.png";
         bomb = {
             desX: -100,
             desY: cvs.height / 2,
