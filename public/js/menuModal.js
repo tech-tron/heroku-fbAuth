@@ -2,7 +2,7 @@ $(document).ready(function () {
     var quitBtn = document.getElementById("quitBtn");
     quitBtn.onclick = function(){
         console.log("forfiet button clicked");
-        location.replace('index.html');
+        location.replace('index-game.html');
     }
     var resumeBtn = document.getElementById("resumeBtn");
     resumeBtn.onclick = function(){

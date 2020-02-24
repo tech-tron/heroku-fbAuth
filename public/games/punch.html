@@ -9,7 +9,6 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/menumodal.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -41,7 +40,7 @@
             </button>
         </div>
     </div>
-    <script src="js/menuModal.js"></script>
+    <script src="../js/menuModal.js"></script>
 
     <canvas id="canvas" width="300" height="300" style="border: 1px solid;"></canvas>
     
@@ -352,6 +351,37 @@ $(document).ready(function () {
                 }
             }
 
+
+            setInterval(function () {
+                if (isPlaying = true) {
+                    updateFrame();
+                    drawBackground();
+                    updateOpp();  // => drawOpp();
+                    // you need boxing gloves that will arise when he is punching and disapear else wise
+                    // you need two black eye squint overlays
+                    // swelling one eye randomly shut near death 
+                }
+
+            }, interval);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             document.addEventListener('mousedown', e => {
                 setPunch();
                 //if (opp.isPunching == true) {}
@@ -372,20 +402,30 @@ $(document).ready(function () {
                 //onswipe call 
                 setPunch();
             });
+            
 
 
 
-            setInterval(function () {
-                if (isPlaying = true) {
-                    updateFrame();
-                    drawBackground();
-                    updateOpp();  // => drawOpp();
-                    // you need boxing gloves that will arise when he is punching and disapear else wise
-                    // you need two black eye squint overlays
-                    // swelling one eye randomly shut near death 
+            document.addEventListener('touchdown', e => {
+                setPunch();
+                //if (opp.isPunching == true) {}
+                initialX = e.clientX;
+                console.log('mouse button down: ' + initialX);
+            });
+            document.addEventListener('touchup', e => {
+                finalX = e.clientX;
+                if (finalX - initialX > 0) {
+                    //positive slop
+                    player.desX = cvs.width * .7
+                    //console.log('Right Swipe!!');
                 }
-
-            }, interval);
+                else {
+                    //console.log('leftSwipe');
+                    player.desX = cvs.width * -.3;
+                }
+                //onswipe call 
+                setPunch();
+            });
         });
     </script>
 

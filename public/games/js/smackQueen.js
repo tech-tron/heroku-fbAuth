@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const interval = 300;
+    const interval = 222;
     var count = 0;
 
     var cvs = document.getElementById('canvas');
@@ -8,20 +8,23 @@ $(document).ready(function () {
     cvs.style.height = window.innerHeight + "px";
 
     var handsImg = new Image();
-    handsImg.src = "../images/queen/smack/alt_hands.png";
+    handsImg.src = "../images/queen/smack/alt_hands.png"; // 9 x 2
+    handsImg.src = "../images/queen/smack/smack_colors_156_250.png";  // 4 x 1
+    handsImg.src = "../images/queen/smack/hands_156_250.png";  // 4 x 4
 
     const hands = {
         srcX: 0,
         srcY: 0,
         srcWidth: 156,
-        srcHeight: 156,
+        srcHeight: 250,
         desX: 0,
-        desY: cvs.height * .25,//0,
+        desY: cvs.height * .25,
         desHeight: cvs.height * .75,
         desWidth: cvs.width,
-        cols: 9,
-        rows: 2,
-        currentFrame: 0
+        cols: 4,
+        punch: 2,
+        currentFrame: 0,
+        landed: false
     }
 
     var lilCloudImg = new Image();
@@ -34,21 +37,13 @@ $(document).ready(function () {
         lilCol: 3
     }
     //cloud should be with queen not hands
-    //when shes at a greater height you can see her eyes perfect
     //needs to follow her bounce
-    //may use hands to follow the stretch 
-    //so they are stretched smaller when she is at a low angle
-    //and normal stretch when she is at the top
-    var dropConst = 30;
-
-    //clouds should follow the up down flow of
-    //hands.desy
-    //like a constant
+    var dropConst = 60;
     function drawClouds() {
         //draw white cloud first if true
         if (hands.currentFrame % 2) {
             ctx.drawImage(bigCloudImg,
-                cloud.srcWidth * (hands.currentFrame % cloud.bigCol),
+                cloud.srcWidth * (count % cloud.bigCol),
                 0,
                 cloud.srcWidth,
                 //same with as height
@@ -60,7 +55,7 @@ $(document).ready(function () {
             );
             //blue cloud little
             ctx.drawImage(lilCloudImg,
-                cloud.srcWidth * (hands.currentFrame % cloud.lilCol),
+                cloud.srcWidth * (count % cloud.lilCol),
                 0,
                 cloud.srcWidth,
                 //same with as height
@@ -74,7 +69,7 @@ $(document).ready(function () {
         else {
             //blue cloud little
             ctx.drawImage(lilCloudImg,
-                cloud.srcWidth * (hands.currentFrame % cloud.lilCol),
+                cloud.srcWidth * (count % cloud.lilCol),
                 0,
                 cloud.srcWidth,
                 //same with as height
@@ -86,7 +81,7 @@ $(document).ready(function () {
             );
             //white Cloud
             ctx.drawImage(bigCloudImg,
-                cloud.srcWidth * (hands.currentFrame % cloud.bigCol),
+                cloud.srcWidth * (count % cloud.bigCol),
                 0,
                 cloud.srcWidth,
                 //same with as height
@@ -101,16 +96,17 @@ $(document).ready(function () {
     }
     function drawHands() {
         hands.currentFrame++;
-        //this is for if the sheet is two rows
-        //two rows
-        //right then left
-        if (hands.currentFrame <= hands.cols) {
-            //hands.currentFrame++;
-            //console.log("one shot animation test");
+        if(hands.currentFrame % hands.cols == 0){
+            if(hands.srcY == hands.srcHeight){
+                0
+            } else {
+                hands.srcY = hands.srcHeight;
+            }
         }
 
         //this will be just a random jump
         //hands.desY = Math.random() * 30;
+        //maybe a random desheight stretch cus the bottom of her arms have to stay in cornered to the bottom due to my spritesheet
 
         ctx.drawImage(handsImg,
             hands.srcWidth * (hands.currentFrame % hands.cols),
@@ -118,9 +114,9 @@ $(document).ready(function () {
             hands.srcWidth,
             hands.srcHeight,
             hands.desX,
-            hands.desY + 30,  // + dropConst,
+            hands.desY + dropConst,
             hands.desWidth,
-            hands.desHeight + 30,  // + dropConst
+            hands.desHeight + dropConst
         );
     }
 
@@ -135,16 +131,13 @@ $(document).ready(function () {
     
     const queen = {
         xRange: cvs.width * .1,
-        yRange: 231 / 3, // half the source width
+        yRange: 231 / 3,
         wobbleSpeed: 5,
-        jumpSpeed: 1,  // not sure what this does but changed it from one to five
-        //kinda want her much fatter
-        //thick like a truck
+        jumpSpeed: 1,  //freq of bounce
         srcWidth: 156,
         srcHeight: 231,
         //i dont know why this is a fraction
         //srcHeight: 231 * (3 / 5),
-        //just move the des x and y to make float
         desX: 0,
         srcY: 0,
         startY: 20,
@@ -153,12 +146,13 @@ $(document).ready(function () {
         smackMaxCount: 7,
         smackMinimum: 3,
         pause: 4,  // amopunt of time she pauses COCKS her punch back
-        punchCount: 2,  // how long she punches for
-        glideSpeed: 0
+        punchCount: 2 + 4,  // how long she punches for
+        glideSpeed: 30,
+        glideAcc: 0
     }
     var gaurdsImg = new Image();
     gaurdsImg.src = "../images/queen/gaurd/army.jpg";
-    //gaurdsImg.src = "../images/queen/gaurd/wall.jpg";
+    gaurdsImg.src = "../images/queen/gaurd/wall.jpg";
     const gaurd = {
         desY: 0,
         bounce: 5
@@ -170,15 +164,11 @@ $(document).ready(function () {
         queen.randSmackCount = 
             Math.floor(Math.random() * queen.smackMaxCount) + queen.smackMinimum;
         queen.isSmack = false;
-        console.log("random smack count set @" + queen.randSmackCount);
+        // console.log("random smack count set @" + queen.randSmackCount);
         count = -1;
-        console.log("queen smack is "+ queen.isSmack);
     }
     function aboutToPunch(){
-        console.log("Drawl The Bitch!!!!");
-        // assum the punch position
-        //queen.srcX = queen.srcWidth * 1;
-        //queen.desX += queen.glideSpeed;
+        queen.desX += queen.glideAcc;
         // maybe a sound too
     }
     function queenSmack(){
@@ -186,22 +176,18 @@ $(document).ready(function () {
             aboutToPunch();
             //console.log("queen is aiming her fucking punch ");
         }else if(count < queen.punchCount){
-            // punch position
-            // throw punch
-            // wait is over
-            //should have chose
-            //IE
             //checkImpact();
-            console.log("oh shit its over she done punched");
+            queen.desX = 0;
+            queen.desY = 0;
             queen.srcX = queen.srcWidth * 2;
         }
         else{
             getRandSmackCount();
+            endPunch();
         }
         //draw the fucking image
-        ctx.drawImage(queensImg,queen.srcX,queen.srcY ,queen.srcWidth,queen.srcHeight,
-            queen.desX,queen.desY,queen.desWidth,queen.desHeight);
-        //ctx.drawImage(queensImg,0,0,queen.srcWidth,queen.srcHeight,0,0,cvs.width,cvs.height);
+        ctx.drawImage(queensImg,queen.srcX,queen.srcY,queen.srcWidth,queen.srcHeight,
+                        queen.desX,queen.desY,cvs.width,cvs.height);
     }
     function drawQueen() {
         queen.desX += queen.wobbleSpeed;
@@ -209,15 +195,9 @@ $(document).ready(function () {
             queen.desX <= -queen.xRange) {
             queen.wobbleSpeed *= -1;
         }
-        //the bottom of this range
-        //she should never be so low that 
-        //that her chin is on the bottom of the screen
-        //bc her hat is the screen
         if (count % 3) {
-            //so youre math randoming every third iteration, seems kinda taxing on the memory but ok
-            // does why range not exist anymore, why doesnt she bounce!!!!!
-            queen.desY = Math.random() * queen.yRange;  // fancy math to make the eye hole move around on the zoom image
-            //queen.desY + queen.startY;
+            queen.desY = Math.random() * queen.yRange + queen.startY;  
+            // fancy math to make the eye hole move around on the zoom image
         }
         queen.srcY = (queen.srcHeight * (count % 2));
         ctx.drawImage(queensImg,
@@ -226,7 +206,6 @@ $(document).ready(function () {
             queen.srcWidth,
             queen.srcHeight,
             queen.desX,
-            //0,  // desY doesnt exist yet
             queen.desY,
             cvs.width,
             cvs.height
@@ -235,6 +214,12 @@ $(document).ready(function () {
         if(count % queen.randSmackCount == 0
             && count > 0){
             queen.isSmack = true;
+            if(queen.srcY > 0){
+                queen.glideAcc = queen.glideSpeed;
+            }else {
+                queen.glideAcc = -queen.glideSpeed;
+            }
+            queen.desY = 0;
             count = -1;
             queen.srcX = queen.srcWidth;
         }
@@ -243,14 +228,19 @@ $(document).ready(function () {
     setInterval(function () {
         count++;
         //rabbit bounce
-        // if(count % 2 == 0){
-        //     gaurd.desY = gaurd.bounce;
-        // } else {
-        //     gaurd.desY = 0;
-        // }
+        if(count % 2 == 0){
+            gaurd.desY = gaurd.bounce;
+        } else {
+            gaurd.desY = 0;
+        }
         ctx.drawImage(gaurdsImg,0, gaurd.desY, cvs.width, cvs.height);
         if(queen.isSmack == true){
             queenSmack();
+            if(hands.landed){
+                handsPunch();
+            }else{
+                ctx.drawImage(idleImg,0,0,156,156,0,0,cvs.width,cvs.height);
+            }
         } else {
             drawQueen();
             drawClouds();
@@ -258,4 +248,102 @@ $(document).ready(function () {
         }
         
     }, interval);
+
+    var idleImg = new Image();
+    idleImg.src = "../images/queen/smack/handsIdle_156.png";
+    function startPunch(){
+        count = -1;
+        queen.punchCount =  count + 0;
+        queen.pause = count + 8;
+        hands.landed = true;
+    }
+    function handsPunch() {
+        ctx.drawImage(handsImg,
+            hands.srcWidth * Math.floor(count / 2),
+            hands.srcY,
+            hands.srcWidth,
+            hands.srcHeight,
+            hands.desX,
+            hands.desY, // + dropConst,
+            hands.desWidth,
+            hands.desHeight,  // + dropConst
+        );
+    }
+    function endPunch(){
+        hands.landed = false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var initialX = 0;
+    var finalX = 0;
+    cvs.addEventListener("touchstart", (e) => {
+        //if (opp.isPunching == true) {}
+        if(hands.landed == false){
+            initialX = e.clientX;
+        }
+        
+    });
+    cvs.addEventListener('touchup', e => {
+        finalX = e.clientX;
+        if (finalX - initialX > 0) {
+            if(queen.desY == 0 
+                && count < queen.pause){
+                hands.srcY = hands.srcHeight * 2;
+                startPunch();
+            }
+        }
+        else {
+            if(queen.desY > 0 
+                && count < queen.pause){
+                hands.srcY = hands.srcHeight * 3;
+                startPunch();
+            }
+        }
+    });
+    cvs.addEventListener('mousedown', (e) => {
+        //if (opp.isPunching == true) {}
+        if(hands.landed == false){
+            initialX = e.clientX;
+            console.log('mouse button down: ' + initialX);
+        }
+        
+    });
+    cvs.addEventListener('mouseup', e => {
+        finalX = e.clientX;
+        if (finalX - initialX > 0) {
+            if(queen.desY == 0 
+                && count < queen.pause){
+                console.log("gotcha bish");
+                hands.srcY = hands.srcHeight * 2;
+                startPunch();
+            }
+        }
+        else {
+            if(queen.desY > 0 
+                && count < queen.pause){
+                console.log("gotcha bish");
+                hands.srcY = hands.srcHeight * 3;
+                startPunch();
+            }
+        }
+    });
 });

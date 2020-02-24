@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Duck!!!</title>
+    <title>Original Punch</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -26,13 +26,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">DuckTrump<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="index-game.html"><span class="sr-only">(current)</span>Games</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="trumpRun.html">RunTrump!</a>
+                    <a class="nav-link" href="../articles/index-articles.html">Articles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/userlogin.html">Menu</a>
+                    <a class="nav-link" href="../index.html">Home</a>
                 </li>
             </ul>
             </ul>
@@ -63,10 +63,10 @@ var ctx = cvs.getContext("2d");
 var bgImg = new Image();
 // only works in root folder
 // bgImg.src = "../images/bg_ufc.jpg";
-bgImg.src = "images/punch/bg_boxing.jpg";
+bgImg.src = "../images/punch/bg_boxing.jpg";
 
 var oppImg = new Image();
-oppImg.src = "images/punch/trump_rights.png";
+oppImg.src = "../images/punch/trump_rights.png";
 
 var opp = {
     srcX: 0,
@@ -101,7 +101,7 @@ var opp = {
     maxDelay: 10  // max under of frames punch holds
 };
 var userImg = new Image();
-userImg.src = "images/punch/boxing_gaurd.png";
+userImg.src = "../images/punch/boxing_gaurd.png";
 
 var player = {
     srcX: 0,
@@ -322,7 +322,7 @@ document.addEventListener('mousedown', e => {
     if(opp.isPunching == true){
         initialX = e.clientX;
     }
-    console.log('mouse button down: ' + startX);
+    console.log('mouse button down: ' + initialX);
 });
 document.addEventListener('mouseup', e => {
     finalX = e.clientX;

@@ -4,30 +4,6 @@ var cvs = document.getElementById("canvas");
         var ctx = cvs.getContext("2d");
 
 
-        cvs.addEventListener("mousemove", movePresident);
-
-        function movePresident(evt) {
-            //let rect = cvs.getBoundingClientRect();
-            //user.desY = evt.clientY - rect.top - user.height / 2; 
-            if(event.clientY - user.height / 2 )  
-            user.desY = evt.clientY - user.height / 2;
-            //console.log(user.desY);
-            if (user.desY < 0) {
-                //console.log("president is getting close")
-                console.log(user.desY+" : before set to zero");
-                user.desY = 0;
-            }
-            else if (user.desY > floor - user.desHeight / 2) {
-                //console.log("almost off canvas screen");
-                //user.desY = cvs.height - user.desHeight;
-                user.desY = floor - user.desHeight / 2;
-            }
-            else {
-                //console.log("desy: "+ user.desY);
-
-            }
-        }
-
 
         var bgImg = new Image();
         bgImg.src = "../images/decloration.jpg";
@@ -396,3 +372,43 @@ var cvs = document.getElementById("canvas");
             //just as a wobble instead of a continouse stream
             //bounces like a pong ball
         }, 100);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cvs.addEventListener("mousemove", movePresident);
+cvs.addEventListener("touchmove", movePresident);
+
+function movePresident(evt) {
+    //let rect = cvs.getBoundingClientRect();
+    //user.desY = evt.clientY - rect.top - user.height / 2; 
+    // if(evt.clientY - user.height / 2 )  
+    user.desY = evt.clientY - user.height / 2;
+    //console.log(user.desY);
+    if (user.desY < 0) {
+        //console.log("president is getting close")
+        console.log(user.desY+" : before set to zero");
+        user.desY = 0;
+    }
+    else if (user.desY > floor - user.desHeight / 2) {
+        //console.log("almost off canvas screen");
+        //user.desY = cvs.height - user.desHeight;
+        user.desY = floor - user.desHeight / 2;
+    }
+    else {
+        //console.log("desy: "+ user.desY);
+
+    }
+}
