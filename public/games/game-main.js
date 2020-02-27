@@ -64,7 +64,7 @@ let games = [
             "Commander and Chief Sux my d*k"
         ],
         "author": "Guy Ferrari",
-        "authorImg": "../images/profile/guy-ferarri.jpeg"
+        "authorImg": "../images/profile/guy-ferrari.jpeg"
     },
     {
         "src": "../images/legs/heels_shortSpring_156_312.png",
@@ -111,7 +111,7 @@ let games = [
         "authorImg": "../images/profile/joi-doi.jfif"
     }
 ];
-var game_container = document.getElementById("game-container");
+var section_game = document.getElementById("games-section");
 //create_game_containers();
 createShowCase();
 
@@ -120,17 +120,45 @@ function createShowCase() {
     var game_string = "";
     for (var i = 0; i < games.length; i++) {
         console.log(games[i].title);
-        game_string += '<div id=" '+i+' class=" '
-            + 'col-xs-12 col-sm-4 col-md-4 " >';
-            game_string += '<img src="'+ games[i].src 
-            + '" alt="' + games[i].alt 
-            + ' class="game-display" > ';
+        game_string += '<div id=" '+i+'" class=" '
+            + 'col-xs-12 col-sm-6 col-md-4 " >';
 
+            //title
+            game_string += '<div id="game-banner"><h3>'+ games[i].title + '</h3>'
+
+
+            //href image
+            game_string += '<a href=" '
+            + games[i].href + ' ">' 
+            + '<img src="'+ games[i].src 
+            + '" alt="' + games[i].alt 
+            + ' class="game-display" > </a></div>';
+
+
+            //span
+            game_string += '<span class="grey-span">'
+                + '<img src="../images/profile/joi-doi.jfif" ' 
+                + 'alt="picture of ' + games[i].author 
+                + 'the lead developer of ' + games[i].title
+                + 'at grrbish gaming" ></span>';
+
+            //p
+            for(let j =0; j < games[i].bio.length; j++){
+                game_string += '<p>' + games[i].bio[j] + '</p>';
+            }
+            game_string
+
+            //sign off
+            game_string += '<h3 class="right">Sincerly</h3>'
+                + '<p class="right">' + games[i].author + '</p>';
+
+            //ad buttons
+            game_string += '<button id="btn-'+ i + '" class="right" >Play Me ow!</button>';
         game_string += '</div>'
 
 
     }
-    game_container.innerHTML = game_string;
+    section_game.innerHTML = game_string;
 }
 
 

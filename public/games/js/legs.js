@@ -19,6 +19,26 @@ $(document).ready(function () {
 
 
 
+    var skirtImg = newImage();
+    skirtImg.src = "images/legs/skirt_156_312.png";
+    var skirt = {
+        "srcWidth": "156",
+        "srcHeight": "312",
+        "row": 2,
+        "isOn": true
+    }
+    function drawSkirt() {
+        ctx.drawImage(skirtImg,
+            count % skirt.col * skirt.srcWidth,
+            skirt.srcY,
+            skirt.srcWidth,
+            skirt.srcHeight,
+            legs.desX,
+            legs.desY,
+            legs.desWidth,
+            legs.desHeight);
+    }
+
 
     var legsImg = new Image();
     legsImg.src = "../images/legs/heels_sprint_156_312.png";  // changed from 100 to correct 156;
@@ -27,7 +47,7 @@ $(document).ready(function () {
         srcY: 0,
         srcWidth: 156,
         srcHeight: 312,
-        col: 3,
+        skirt: 3,
         desX: cvs.width * .1,
         desY: cvs.height * .5,
         desWidth: cvs.width * .2,
@@ -220,7 +240,12 @@ $(document).ready(function () {
             //&& duckObsticle.desX + duckObsticle.width < legs.desX){
             if (duckObsticle.state == false) {
                 console.log('You got hit in the face with a giant dildo!!');
-                gameOver = true;
+                if(skirt.isOn == true){
+                    skirt.isOn = false;
+
+                } else {
+                    gameOver = true;
+                }
             } else {
                 points++;
                 console.log("ducking under the dildos");
@@ -273,6 +298,9 @@ $(document).ready(function () {
             count++;
             drawBackground();
             drawLegs();
+            if(skirt.isOn == true){
+                drawSkirt();
+            }
             if (jumpObsticle.state == true) {
                 //console.log("jump opsticle");
                 drawJumpObsticle();
@@ -316,7 +344,9 @@ $(document).ready(function () {
 
     var finalX = 0;
     var initialX = 0;
-    cvs.addEventListener("touchstart", touchHandler);
+    cvs.addEventListener("touchstart", function(e) {
+        var initialX = e.originalEvent.touches[0].pageX;
+      });
     cvs.addEventListener("touchend", (e) => {
         finalX = e.touches[0].pageY;
         legs.srcY = 0;

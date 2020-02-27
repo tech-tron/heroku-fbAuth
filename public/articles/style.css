@@ -30,3 +30,10 @@ body{
     width: 22%;
     color: white;
 }
+
+
+.card-body button{
+    width: 50%;
+    
+    float: left;
+}

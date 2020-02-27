@@ -77,14 +77,18 @@ function updateFrame() {
     user.currentFrame++;
 
 }
+function drawUserX(){
+    user.srcX = (user.currentFrame % user.col) * user.width;
+    user.srcY = 1 * user.height;
+
+    ctx.drawImage(userImg, 0, user.srcX, user.srcY,
+        100, user.desY,user.desWidth,user.desHeight);
+}
 function drawUser() {
     //this is where the frame lies on the sheet
     user.srcX = (user.currentFrame % user.col) * user.width;
     user.srcY = 1 * user.height;
     //drawBody
-    ctx.drawImage(userImg, user.srcX, user.srcY, user.width, user.height, user.desX, user.desY, user.desWidth, user.desHeight);
-
-    //draw hands
     if (isShooting) {
         ctx.drawImage(userImg, 0, user.srcY + user.height * 2, user.width, user.height,
             user.desX, user.desY, user.desWidth, user.desHeight
@@ -388,12 +392,33 @@ cvs.addEventListener("touchmove", touchHandler);
 
 //The touchHandler function looks like this:
 function touchHandler(e) {
-    if(e.touches) {
-         = e.touches[0].pageX ;
-        playerY = e.touches[0].pageY ;
-        section.innerHTML = "Touch: "+ " x: " + playerX + ", y: " + playerY;
+    if(e.touches[0].pageY != user.desY) {
+        user.desY = e.touches[0].pageY ;
+
+        //let rect = cvs.getBoundingClientRect();
+        //user.desY = evt.clientY - rect.top - user.height / 2; 
+        // if(evt.clientY - user.height / 2 )  
+        user.desY = e.touches[0].pageY - user.height / 2;
+        //console.log(user.desY);
+        if (user.desY < 0) {
+            //console.log("president is getting close")
+            console.log(user.desY + " : before set to zero");
+            user.desY = 0;
+        }
+        else if (user.desY > floor - user.desHeight / 2) {
+            //console.log("almost off canvas screen");
+            //user.desY = cvs.height - user.desHeight;
+            user.desY = floor - user.desHeight / 2;
+        }
+        else {
+            //console.log("desy: "+ user.desY);
+
+        }
+        console.log("moveY:"+ user.desY);
+        drawUser();
+
         e.preventDefault();
-        console.log("moveX:"+playerX);
+
     }
 }
 
@@ -404,7 +429,8 @@ function movePresident(evt) {
     //let rect = cvs.getBoundingClientRect();
     //user.desY = evt.clientY - rect.top - user.height / 2; 
     // if(evt.clientY - user.height / 2 )  
-    user.desY = evt.clientY - user.height / 2;
+    user.desY = evt.clientY - (user.height / 2) 
+        - window.innerHeight * .3;
     //console.log(user.desY);
     if (user.desY < 0) {
         //console.log("president is getting close")
