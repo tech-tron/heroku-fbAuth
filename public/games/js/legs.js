@@ -105,8 +105,8 @@ $(document).ready(function () {
             setDuck();
         }
     }
-    
-    function initGame(){
+
+    function initGame() {
         setRandomObsticle();
         points = 0;
         gameOver = false;
@@ -316,9 +316,38 @@ $(document).ready(function () {
 
     var finalX = 0;
     var initialX = 0;
+    cvs.addEventListener("touchstart", touchHandler);
+    cvs.addEventListener("touchend", (e) => {
+        finalX = e.touches[0].pageY;
+        legs.srcY = 0;
+        duckObsticle.state = false;
+        if (finalX - initialX < 0) {
+            //positive slop
+            if (jumpCount <= 0) {
+                jumpCount = jumpDelay;
+                jumpSound.currentTime = 0;
+                jumpSound.play();
+                //jumpSound.currentTime = 0;
+            }
+            console.log('up swipe!!');
+        }
+        else {
+            console.log('down swipe');
+
+        }
+    });
+
+    //The touchHandler function looks like this:
+    function touchHandler(e) {
+        if (e.touches) {
+            initialX = e.touches[0].pageY;
+            legs.srcY = legs.srcHeight;  // becasue she is leaned back, second
+            duckObsticle.state = true;
+        }
+    }
     document.addEventListener('mousedown', e => {
         initialX = e.clientY;
-        legs.srcY = legs.srcHeight;
+        legs.srcY = legs.srcHeight;  // becasue she is leaned back, second
         console.log(legs.srcY);
         duckObsticle.state = true;
     });
@@ -408,7 +437,7 @@ $(document).ready(function () {
         menu.style.display = "none";
         menuIcon.style.display = "inline";
     }
-    
+
 
 
     var menu = document.getElementById("menu-cover");
@@ -417,7 +446,7 @@ $(document).ready(function () {
     menuIcon.onclick = function () {
         console.log("Neeeeeeds a pause menu!!!!!!");
         menu.style.display = "block";
-        menuIcon.style.display = "none"; 
+        menuIcon.style.display = "none";
         // may be impossible to pause
         // carry on 
         // onward and upward
