@@ -7,6 +7,30 @@ main{
     padding: 10%;
     background-color: limegreen;
 }
+
+
+
+
+
+#score{
+    position: absolute;
+    top: 30vh;
+    font-size: 42px;
+    text-align: center;
+    z-index: 5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 #game-container {
     margin: 5% 1%;
     background: rgba(255, 255, 255, 0.2);

@@ -6,30 +6,62 @@ $(document).ready(function () {
     // lets just add a read arbatrary number
     const jumpHeight = -50;
 
+    //var
     var count = 0;
     var jumpCount = 0;
     var points = 0;
     var gameOver = false;
 
-
+    //canvas
     var cvs = document.getElementById("canvas");
     cvs.style.width = window.innerWidth + "px";
     cvs.style.height = window.innerHeight + "px";
     var ctx = cvs.getContext("2d");
 
 
+    //elements
+    var scoreDisplay = document.getElementById("score");
 
+    //imgVars
     var skirtImg = new Image();
+    var legsImg = new Image();
+    var bgImg = new Image();
+    var go_bgImg = new Image();
+    var go_scoreImg = new Image();
+    var duckImg = new Image();
+    var jumpImg = new Image();
+    //images
     skirtImg.src = "images/legs/skirt_156_312.png";
+    legsImg.src = "images/legs/legs_156_312.png";  // changed from 100 to correct 156;
+    bgImg.src = "images/legs/dildo_guysStaring_312_156.png";
+    go_bgImg.src = "images/legs/gameover_gold_312_156.png";
+    go_scoreImg.src = "images/legs/dildo_box_468_312.png";
+    duckImg.src = "images/legs/dildo_duckUnder_624_312.png";
+    jumpImg.src = "../images/legs/dildo_jump_637_312.png";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     var skirt = {
-        "srcWidth": "156",
-        "srcHeight": "312",
-        "row": 2,
-        "isOn": true
+        srcWidth: 156,
+        srcHeight: 312,
+        row: 2,
+        isOn: true
     }
     function drawSkirt() {
         ctx.drawImage(skirtImg,
-            count % skirt.col * skirt.srcWidth,
+            count % skirt.row * skirt.srcWidth,
             0,
             skirt.srcWidth,
             skirt.srcHeight,
@@ -38,16 +70,18 @@ $(document).ready(function () {
             legs.desWidth,
             legs.desHeight);
     }
+    function removeSkirt() {
+        skirt.isOn = false;
+        duckObsticle.state = true;
+        setRandomObsticle();
+    }
 
-
-    var legsImg = new Image();
-    legsImg.src = "images/legs/legs_156_312.png";  // changed from 100 to correct 156;
     var legs = {
         srcX: 0,
         srcY: 0,
         srcWidth: 156,
         srcHeight: 312,
-        row: 3,
+        col: 3,
         desX: cvs.width * .1,
         desY: cvs.height * .5,
         desWidth: cvs.width * .2,
@@ -55,9 +89,8 @@ $(document).ready(function () {
     }
     function drawLegs() {
         ctx.drawImage(legsImg,
-            //count % legs.col * legs.srcWidth,
-            //legs.srcY,
-            0,0,
+            count % legs.col * legs.srcWidth,
+            legs.srcY,
             legs.srcWidth,
             legs.srcHeight,
             legs.desX,
@@ -66,18 +99,16 @@ $(document).ready(function () {
             legs.desHeight)
     }
 
-    var bgImg = new Image();
-    bgImg.src = "../images/legs/dildo_guysStaring_312_156.png";
     var bg = {
         srcWidth: 312,
         srcHeight: 156,
+        row: 2,
         desWidth: cvs.width,
         desHeight: cvs.height,
         xlead: 0,
         xtrail: cvs.width,
         speed: moveSpeed
     }
-    bg.desHeight = legs.desY + legs.desHeight;
     function drawBackground() {
         ctx.fillRect(0, 0, cvs.width, cvs.height);
         if (bg.xlead < -cvs.width) {
@@ -94,24 +125,99 @@ $(document).ready(function () {
 
 
         //everything is standard but desired x
-        ctx.drawImage(bgImg, 0, 0, bg.srcWidth, bg.srcHeight, bg.xlead, 0, bg.desWidth, bg.desHeight);
-        ctx.drawImage(bgImg, 0, 0, bg.srcWidth, bg.srcHeight, bg.xtrail, 0, bg.desWidth, bg.desHeight);
+        ctx.drawImage(bgImg, (count % bg.row) * bg.srcWidth, 0, bg.srcWidth, bg.srcHeight, bg.xlead, 0, bg.desWidth, bg.desHeight);
+        ctx.drawImage(bgImg, (count % bg.row) * bg.srcWidth, 0, bg.srcWidth, bg.srcHeight, bg.xtrail, 0, bg.desWidth, bg.desHeight);
     }
-    var scoreBoardImg = new Image();
-    scoreBoardImg.src = "images/legs/dildo_box_468_312.png";
-    var scoreBoard = {
+    //game Over
+    var go_bg = {
+        srcWidth: 312,
+        srcHeight: 156
+    }
+    var go_score = {
+        srcX: 0,
         srcWidth: 468,
         srcHeight: 312,
-        desWidth: cvs.width,
-        desHeight: cvs.height,
-    }
-    function drawScoreBoard() {
-        ctx.drawImage(scoreBoardImg, 0, 0, scoreBoard.srcWidth, scoreBoard.srcHeight, 0, 0, scoreBoard.desWidth, scoreBoard.desHeight);
+        desX: window.innerWidth,
+        desY: (.1 * window.innerHeight),
+        desWidth: cvs.width * .8,
+        desHeight: (.5 * cvs.height),
+        acc: -55,
+        finalX: .1 * cvs.width
     }
 
+
+
+    //NPC
+    var duckObsticle = {
+        srcX: 0,
+        srcY: 0,
+        srcWidth: 624,
+        srcHeight: 312,
+        col: 1,
+        desX: cvs.width,
+        desY: 0,
+        desWidth: 1,
+        desHeight: 1,
+        speed: moveSpeed,
+        state: true,
+        lengthMultiplier: 2
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function setObjectSize() {
+        bg.desHeight = legs.desY + legs.desHeight;
+    }
+    function drawGameOver() {
+        //set background
+        ctx.drawImage(go_bgImg,
+            0, 0, go_bg.srcWidth, go_bg.srcHeight,
+            0, 0, cvs.height, cvs.width);
+        //move box
+        if (go_score.desX > go_score.finalX) {
+            go_score.desX += go_score.acc;
+            go_score.srcX = 0;
+        }
+        else {
+            go_score.desX = go_score.finalX;
+            go_score.srcX = go_score.srcWidth;
+            drawFinalScore();
+        }
+        console.log("box@" + go_score.desX);
+        ctx.drawImage(go_scoreImg,
+            go_score.srcX, 15, go_score.srcWidth, go_score.srcHeight,
+            go_score.desX, go_score.desY, go_score.desWidth, go_score.desHeight
+        );
+    }
+    function drawFinalScore() {
+        console.log("game is over, draw score");
+    }
+    //score
+    function drawScore() {
+        scoreDisplay.innerHTML = "";
+        scoreDisplay.innerHTML = points;
+    }
     function score() {
         points += 4;
-        console.log("scored: " + points);
+        drawScore();
     }
     function setRandomObsticle() {
         if (Math.random() > .5) {
@@ -128,6 +234,7 @@ $(document).ready(function () {
     }
 
     function initGame() {
+        setObjectSize();
         setRandomObsticle();
         points = 0;
         gameOver = false;
@@ -153,36 +260,42 @@ $(document).ready(function () {
 
 
 
-    var jumpImg = new Image();
-    jumpImg.src = "../images/legs/dildo_jump_637_312.png";
+    //jump player
     var jumpObsticle = {
         srcX: 0,
         srcY: 0,
-        srcWidth: 637,
-        srcHeight: 312,
-        col: 1,
+        srcWidth: 156,
+        srcHeight: 156,
+        row: 1,
         desX: cvs.width,
         desY: 1,
         desWidth: 1,
         desHeight: 1,
         speed: moveSpeed * 2,
-        state: true
+        state: true,
+        imgRef: "images/legs/dildo_bounce_0",
+        count: 6
     }
     function setJump() {
         jumpObsticle.desX = Math.floor(Math.random() * cvs.width) + cvs.width;
         jumpObsticle.desHeight = legs.desHeight / 3;  // id like it to be a third of the lady, maybe a half i d f k
         jumpObsticle.desY = legs.desY + legs.desHeight - jumpObsticle.desHeight;  // this should put us on the ground
-        jumpObsticle.desWidth = legs.desWidth * 3; // 5 times the lady
+        jumpObsticle.desWidth = legs.desWidth * .5; 
     }
     function checkJump() {
         //console.log("check Jump @" + jumpObsticle.desX);
         if (legs.desX + legs.desWidth > jumpObsticle.desX
             && legs.desX < jumpObsticle.desX) {
             console.log("you are over top of the dildos")
-            points++;
+            score();
             if (jumpCount <= 0) {
-                console.log('You loose');
-                gameOver = true;
+                if(skirt.isOn == true){
+                    removeSkirt();
+                }else{
+                    console.log('You loose');
+                    gameOver = true;
+                }
+                
             }
         }
     }
@@ -198,52 +311,37 @@ $(document).ready(function () {
 
         }
 
+        console.log("about to draw dildos");
         // drawl bad boy
-        ctx.drawImage(jumpImg,
-            count % jumpObsticle.col * jumpObsticle.srcWidth,
-            jumpObsticle.srcY,
-            jumpObsticle.srcWidth,
-            jumpObsticle.srcHeight,
-            jumpObsticle.desX,
-            jumpObsticle.desY,
-            jumpObsticle.desWidth,
-            jumpObsticle.desHeight)
+        for(var i = 0; i < jumpObsticle.count; i++){
+            jumpImg.src = ""+ jumpObsticle.imgRef+ Math.floor(Math.random() * 6)+ ".png";
+            console.log(jumpImg.src);
+            ctx.drawImage(jumpImg,
+                count % jumpObsticle.row * jumpObsticle.srcWidth,
+                jumpObsticle.srcY,
+                jumpObsticle.srcWidth,
+                jumpObsticle.srcHeight,
+                jumpObsticle.desX + (i * jumpObsticle.desWidth * .4),
+                jumpObsticle.desY,
+                jumpObsticle.desWidth,
+                jumpObsticle.desHeight)
+        }
     }
 
 
-
-    //DUCK
-    var duckImg = new Image();
-    duckImg.src = "../images/legs/dildo_duckUnder_624_312.png";
-
-    var duckObsticle = {
-        srcX: 0,
-        srcY: 0,
-        srcWidth: 624,
-        srcHeight: 312,
-        col: 1,
-        desX: cvs.width,
-        desY: 0,
-        desWidth: 1,
-        desHeight: 1,
-        speed: moveSpeed,
-        state: true,
-        lengthMultiplier: 2
-    }
     function setDuck() {
         duckObsticle.desHeight = legs.desY + (legs.desHeight / 2);  // half way through the charachter
         duckObsticle.desX = Math.floor(Math.random() * cvs.width) + cvs.width;
-        duckObsticle.desWidth = Math.floor(Math.random() * (cvs.width / 2)) * duckObsticle.lengthMultiplier + ( cvs.width / 2);
+        duckObsticle.desWidth = Math.floor(Math.random() * (cvs.width / 2)) * duckObsticle.lengthMultiplier + (cvs.width / 2);
     }
 
     function checkDuck() {
         if (duckObsticle.desX < legs.desX + legs.desWidth) {
-            //&& duckObsticle.desX + duckObsticle.width < legs.desX){
             if (duckObsticle.state == false) {
                 console.log('You got hit in the face with a giant dildo!!');
-                if(skirt.isOn == true){
-                    skirt.isOn = false;
-
+                if (skirt.isOn == true) {
+                    //should be a remove life function / skirt removal
+                    removeSkirt();
                 } else {
                     gameOver = true;
                 }
@@ -299,7 +397,7 @@ $(document).ready(function () {
             count++;
             drawBackground();
             drawLegs();
-            if(skirt.isOn == true){
+            if (skirt.isOn == true) {
                 drawSkirt();
             }
             if (jumpObsticle.state == true) {
@@ -310,7 +408,8 @@ $(document).ready(function () {
                 drawDuckObsticle();
             }
         } else {
-            drawScoreBoard();
+            count = -1;
+            drawGameOver();
         }
 
 
@@ -345,9 +444,9 @@ $(document).ready(function () {
 
     var finalX = 0;
     var initialX = 0;
-    cvs.addEventListener("touchstart", function(e) {
+    cvs.addEventListener("touchstart", function (e) {
         var initialX = e.originalEvent.touches[0].pageX;
-      });
+    });
     cvs.addEventListener("touchend", (e) => {
         finalX = e.touches[0].pageY;
         legs.srcY = 0;
