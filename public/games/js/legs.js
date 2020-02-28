@@ -19,7 +19,7 @@ $(document).ready(function () {
 
 
 
-    var skirtImg = newImage();
+    var skirtImg = new Image();
     skirtImg.src = "images/legs/skirt_156_312.png";
     var skirt = {
         "srcWidth": "156",
@@ -30,7 +30,7 @@ $(document).ready(function () {
     function drawSkirt() {
         ctx.drawImage(skirtImg,
             count % skirt.col * skirt.srcWidth,
-            skirt.srcY,
+            0,
             skirt.srcWidth,
             skirt.srcHeight,
             legs.desX,
@@ -41,13 +41,13 @@ $(document).ready(function () {
 
 
     var legsImg = new Image();
-    legsImg.src = "../images/legs/heels_sprint_156_312.png";  // changed from 100 to correct 156;
+    legsImg.src = "images/legs/legs_156_312.png";  // changed from 100 to correct 156;
     var legs = {
         srcX: 0,
         srcY: 0,
         srcWidth: 156,
         srcHeight: 312,
-        skirt: 3,
+        row: 3,
         desX: cvs.width * .1,
         desY: cvs.height * .5,
         desWidth: cvs.width * .2,
@@ -55,8 +55,9 @@ $(document).ready(function () {
     }
     function drawLegs() {
         ctx.drawImage(legsImg,
-            count % legs.col * legs.srcWidth,
-            legs.srcY,
+            //count % legs.col * legs.srcWidth,
+            //legs.srcY,
+            0,0,
             legs.srcWidth,
             legs.srcHeight,
             legs.desX,
@@ -97,10 +98,10 @@ $(document).ready(function () {
         ctx.drawImage(bgImg, 0, 0, bg.srcWidth, bg.srcHeight, bg.xtrail, 0, bg.desWidth, bg.desHeight);
     }
     var scoreBoardImg = new Image();
-    scoreBoardImg.src = "../images/legs/dildo_winnerScreen_624.jpg";
+    scoreBoardImg.src = "images/legs/dildo_box_468_312.png";
     var scoreBoard = {
-        srcWidth: 624,
-        srcHeight: 624,
+        srcWidth: 468,
+        srcHeight: 312,
         desWidth: cvs.width,
         desHeight: cvs.height,
     }
@@ -232,7 +233,7 @@ $(document).ready(function () {
     function setDuck() {
         duckObsticle.desHeight = legs.desY + (legs.desHeight / 2);  // half way through the charachter
         duckObsticle.desX = Math.floor(Math.random() * cvs.width) + cvs.width;
-        duckObsticle.desWidth = Math.floor(Math.random() * cvs.width) * duckObsticle.lengthMultiplier;
+        duckObsticle.desWidth = Math.floor(Math.random() * (cvs.width / 2)) * duckObsticle.lengthMultiplier + ( cvs.width / 2);
     }
 
     function checkDuck() {
@@ -371,14 +372,13 @@ $(document).ready(function () {
     function touchHandler(e) {
         if (e.touches) {
             initialX = e.touches[0].pageY;
-            legs.srcY = legs.srcHeight;  // becasue she is leaned back, second
+            //legs.srcY = legs.srcHeight;  // becasue she is leaned back, second
             duckObsticle.state = true;
         }
     }
     document.addEventListener('mousedown', e => {
         initialX = e.clientY;
         legs.srcY = legs.srcHeight;  // becasue she is leaned back, second
-        console.log(legs.srcY);
         duckObsticle.state = true;
     });
     document.addEventListener('mouseup', e => {
