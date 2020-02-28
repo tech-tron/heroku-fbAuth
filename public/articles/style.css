@@ -32,8 +32,52 @@ body{
 }
 
 
-.card-body button{
-    width: 50%;
-    
+
+
+
+
+#articles-section h3{
+    text-align: center;
+}
+#articles-section button{
+    width: 49.9%;
+    height: 40px;
+}
+#articles-section img{
+    height: 220px;
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+
+section{
+    margin: 50px 0;
+    position: relative;
+}
+#articleContainer{
+    position: relative;
+}
+#voteYes{
+    position: absolute;
+    top: 0;
+    width: 35%;
+    height: 40%;
     float: left;
+    background-color: skyblue;
+}
+#voteNo{
+    position: absolute;
+    top: 0;
+    width: 35%;
+    height: 40%;
+    float: right;
+    background-color: orangered;
+}
+#displayImg{
+    height: 220px;
+    width: 100%;
+
+}
+#articleTitle{
+    font-size: 23px;
 }

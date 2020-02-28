@@ -3,8 +3,8 @@ var articles = [
     {
         "title": "man cannot live by coffee alone",
         "href": "",
-        "src": "",
-        "alt": "Megan Markel and Prince Harry are off to canada",
+        "src": "images/girl-bites-lip.jpg",
+        "alt": "blonde girl bites lip seductivly",
         "P": [
             ""
         ]
@@ -23,9 +23,108 @@ var articles = [
     },
     {
         "title": "finding Her place in the World",
+        "href": "meghen-worldly-kingdom.html",
+        "src": "images/meghan-markle-and-prince-harry.jpg",
+        "alt": "Meghan Markel and Prince Harry are off to canada",
+        "P": [
+            "what good can come of leaving the palace"
+        ]
+    },
+    {
+        "title": "is christian soul",
+        "href": "christians-stole-soul",
+        "src": "images/chill-forest-pine.jpeg",
+        "alt": "picture of a forest",
+        "P": [
+            "mind and soul are one vessel",
+            "before the Christian Damnation of the word soul "
+        ]
+    },
+    {
+        "title": "candles are better than light",
+        "href": "",
+        "src": "images/candle-vigil-solo-light.jpg",
+        "alt": "white candle burning",
+        "P": [
+            "Candles are safer for eye sight than light at night"
+        ]
+    },
+    {
+        "title": "candles increase psychic abilities",
+        "href": "",
+        "src": "images/candle-vigil-solo-light.jpg",
+        "alt": "white candle burning",
+        "P": [
+            "What are paranormal abilities??",
+            "once establishes, what the test say",
+            "finaly, Wow! just wow!"
+        ]
+    },
+    {
+        "title": "blue makes you use less salt",
+        "href": "eating-with-the-color-blue.html",
+        "src": "images/blue-plates-and-tables.jpg",
+        "alt": "a picture of a blue plant on a table",
+        "P": [
+            "Can seeing the color of blue help you lower your salt consumption",
+            "Harvard seems to have the answer",
+            "lol,"
+        ]
+    },
+    {
+        "title": "Wemon lead earliest homosapians",
+        "href": "",
+        "src": "images/put-a-crown-on-it.jpg",
+        "alt": "hairy female homosapian",
+        "P": [
+            ""
+        ]
+    },
+    {
+        "title": "Wemon were the same size as Men",
+        "href": "",
+        "src": "images/put-a-crown-on-it.jpg",
+        "alt": "hairy female homosapian",
+        "P": [
+            ""
+        ]
+    },
+    {
+        "title": "Periods sync so kids can share birthdays",
+        "href": "",
+        "src": "images/put-a-crown-on-it.jpg",
+        "alt": "hairy female homosapian",
+        "P": [
+            "tribal wemon needed to have babies the same age so they could have help raising them",
+            "just so wemon could have help doing the chors",
+            "while men were off being"
+        ]
+    },
+    {
+        "title": "Wemon have better job options",
+        "href": "female-jobs-pay-more.html",
+        "src": "images/female-old-family-holding-check.jfif",
+        "alt": "dumb girl from the 1960s",
+        "P": [
+            "feminine jobs were thinking jobs",
+            "modern jobs are thinking jobs",
+            "secretary, nurse, assistant, manager"
+        ]
+    },
+    {
+        "title": "",
         "href": "",
         "src": "",
-        "alt": "Megan Markel and Prince Harry are off to canada",
+        "alt": "",
+        "P": [
+            ""
+        ]
+    },
+    {
+        "title": "",
+        "href": "",
+        "src": "",
+        "alt": "",
         "P": [
             ""
         ]
@@ -124,25 +223,39 @@ var articles = [
 ]
 var section_a = document.getElementById("articles-section");
 var a_string = "";
+
+var articleContainer = document.getElementById("articlesContainer");
+var displayImg = document.getElementById("displayImg");
+var voteYes = document.getElementById("voteYes");
+var voteNo = document.getElementById("voteNo");
+var articleTitle = document.getElementById("articleTitle");
+
 createArticleBox();
+createStaticBox();
 
 function createArticleBox(){
     for(let i = 0; i < articles.length; i++){
-        console.log(articles[i].title);
         a_string += '<div class="col-xs-12 col-sm-6 col-md-4">'
-            + '<div class="card mb-4 box-shadow">'
-            + '<p class="card-text">';
-            a_string += articles[i].title; + '</p>';
-            a_string += '"<div class="card-body"> '
-                + '<img class="card-img-top rounded-circled" src=" '
-                + articles[i].src
-                +  ' " alt=" ' + articles[i].alt + " ' > ";
-                //add the buttons
-                a_string += '<div class="d-flex justify-content-between align-items-center"><div class="btn-group"><button type="button" class="btn btn-sm btn-info btn-outline-secondary">yes<span class="glyphicon glyphicon-thumbs-up"></span></button><button type="button" class="btn btn-sm btn-danger btn-outline-secondary">no<span class="glyphicon glyphicon-thumbs-down"></span></button></div><small class="text-muted">5 mins</small></div>'
-                //close the string
-                a_string += '</div></div><div></div>'
+                        + '<h3>'+ articles[i].title + '</h3>';
+            
+            a_string += '<button>Yes</button>';
+            a_string += '<button>No</button>';
+
+            a_string += '<img src="'+ articles[i].src 
+                        +  '" alt="' + articles[i].alt + '">'; 
+            //add the buttons
+            
+        a_string += '</div>';
     };
     
     section_a.innerHTML = a_string;
     a_string = "";
+}
+
+function createStaticBox() {
+    console.log(articleTitle);
+    articleTitle.innerHTML = articles[5].title;
+    displayImg.src = articles[5].src;
+    displayImg.alt = articles[5].alt;
+
 }
